@@ -1,8 +1,10 @@
+import { RouterProvider } from "react-router-dom"
+import { router } from "./routes"
+
+
 function App() {
   return (
-    <>
-      청년모아 홈페이지
-    </>
+    <RouterProvider router={router} />
   )
 }
 
