@@ -4,7 +4,7 @@ import { Logo } from "../assets";
 // TODO: 링크 페이지 생성
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-start gap-3 px-10 py-9 text-header-black md:flex md:flex-row md:gap-16">
+    <footer className="flex flex-col items-start gap-3 px-10 py-9 text-header-black bg-gray-005 md:flex md:flex-row md:gap-16">
       <Logo height={25} />
 
       <section className="flex flex-col gap-3 text-xs">
