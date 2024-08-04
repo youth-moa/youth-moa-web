@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-5">
@@ -21,8 +23,15 @@ export default function LoginPage() {
       <div className={'my-4'} />
 
       <section className="flex flex-col w-full gap-2 max-w-96">
-        <Button label={'로그인'} />
-        <Button label={'회원가입'} type="outlined" />
+        <Button 
+        label={'로그인'} 
+        onClick={() => console.log('click')}
+        />
+        <Button
+         label={'회원가입'}
+          type="outlined" 
+          onClick={() => navigate('/sign-up')}
+         />
       </section>
 
       <div className={'my-2'} />
