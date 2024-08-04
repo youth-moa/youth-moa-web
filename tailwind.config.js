@@ -11,6 +11,7 @@ export default {
       },
       colors: {
         white: '#fff',
+        'header-black': 'rgba(50, 50, 50, 1)',
       }
     },
   },
