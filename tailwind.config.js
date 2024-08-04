@@ -10,7 +10,8 @@ export default {
         'header': '0px 3px 4px 0px rgba(0, 0, 0, 0.12);',
       },
       colors: {
-        white: '#fff',
+        blue: 'rgba(63, 48, 233, 1)',
+        'border-gray': 'rgba(217, 217, 217, 1)',
         'header-black': 'rgba(50, 50, 50, 1)',
         'gray-005': 'rgba(245, 245, 245, 1)',
       }
