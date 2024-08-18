@@ -1,6 +1,8 @@
+import { ComponentProps } from "react";
+
 import { BUTTON_TYPE } from "../../constants/keys";
 
-interface PropsType {
+interface PropsType extends Omit<ComponentProps<"button">, "type"> {
   label: string;
   type?: "fill" | "outlined";
   onClick: () => void;
@@ -15,6 +17,7 @@ export function Button({ label, type = BUTTON_TYPE.fill, onClick }: PropsType) {
   return (
     <button
       className={`${bgColor} ${textColor} ${border} ${borderColor} rounded-lg py-[15px] font-semibold`}
+      type="button"
       onClick={onClick}
     >
       {label}
