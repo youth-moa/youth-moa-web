@@ -11,18 +11,18 @@ import { InputContainer } from "../components/sign-up/InputContainer";
 
 import { IcoCheckOutlined, IcoSearch } from "../assets";
 import { BUTTON_TYPE } from "../constants/keys";
-import { AccountType } from "../types/auth";
+// import { AccountType } from "../types/auth";
 
 export default function SignUpPage() {
-  const [form, setForm] = useState<AccountType>({
-    email: "",
-    password: "",
-    name: "",
-    phone: "",
-    address: "",
-    gender: "mail",
-    birth: "",
-  });
+  // const [form, setForm] = useState<AccountType>({
+  //   email: "",
+  //   password: "",
+  //   name: "",
+  //   phone: "",
+  //   address: "",
+  //   gender: "mail",
+  //   birth: "",
+  // });
 
   const agreeSignUpRef = useRef<HTMLInputElement>(null);
   const agreePersonalInfoRef = useRef<HTMLInputElement>(null);
@@ -36,7 +36,7 @@ export default function SignUpPage() {
       return;
     }
 
-    console.log(form);
+    // console.log(form);
   };
 
   console.log(
