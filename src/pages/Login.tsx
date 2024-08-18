@@ -14,22 +14,16 @@ export default function LoginPage() {
 
       <section className="flex flex-col w-full gap-2 max-w-96">
         <Input type="text" placeholder="아이디를 입력해주세요." />
-        <Input
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          password={true}
-        />
+        <Input type="password" placeholder="비밀번호를 입력해주세요." />
       </section>
 
       <div className={"my-4"} />
 
       <section className="flex flex-col w-full gap-2 max-w-96">
-        <Button label={"로그인"} onClick={() => console.log("click")} />
-        <Button
-          label={"회원가입"}
-          type="outlined"
-          onClick={() => navigate("/sign-up")}
-        />
+        <Button onClick={() => console.log("click")}>로그인</Button>
+        <Button type="outlined" onClick={() => navigate("/sign-up")}>
+          회원가입
+        </Button>
       </section>
 
       <div className={"my-2"} />

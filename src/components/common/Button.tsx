@@ -3,12 +3,16 @@ import { ComponentProps } from "react";
 import { BUTTON_TYPE } from "../../constants/keys";
 
 interface PropsType extends Omit<ComponentProps<"button">, "type"> {
-  label: string;
   type?: "fill" | "outlined";
   onClick: () => void;
 }
 
-export function Button({ label, type = BUTTON_TYPE.fill, onClick }: PropsType) {
+export function Button({
+  children,
+  type = BUTTON_TYPE.fill,
+  onClick,
+  ...rest
+}: PropsType) {
   const bgColor = type === BUTTON_TYPE.outlined ? "bg-white" : "bg-blue";
   const textColor = type === BUTTON_TYPE.outlined ? "text-blue" : "text-white";
   const borderColor = type === BUTTON_TYPE.outlined ? "border-blue" : "";
@@ -16,11 +20,12 @@ export function Button({ label, type = BUTTON_TYPE.fill, onClick }: PropsType) {
 
   return (
     <button
-      className={`${bgColor} ${textColor} ${border} ${borderColor} rounded-lg py-[15px] font-semibold`}
+      className={`${bgColor} ${textColor} ${border} ${borderColor} rounded-lg py-[15px] font-semibold h-full w-full flex items-center justify-center`}
       type="button"
       onClick={onClick}
+      {...rest}
     >
-      {label}
+      {children}
     </button>
   );
 }
