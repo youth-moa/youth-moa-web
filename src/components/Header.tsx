@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
-import { IcoAlarm, IcoDownload, IcoHamburger, IcoSetting, Logo, Symbol } from "../assets";
+import {
+  IcoAlarm,
+  IcoDownload,
+  IcoHamburger,
+  IcoSetting,
+  Logo,
+  Symbol,
+} from "../assets";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 flex items-center justify-between px-5 py-7 shadow-header bg-white md:px-10 md:py-3.5">
+    <header className="sticky top-0 flex items-center justify-between px-5 py-7 shadow-header bg-white md:px-10 md:py-3.5 z-50">
       <Logo height={30} className="hidden md:inline-block" />
       <Symbol height={25} className="md:hidden" />
 
@@ -40,5 +47,5 @@ export default function Header() {
         </li>
       </ul>
     </header>
-  )
+  );
 }
