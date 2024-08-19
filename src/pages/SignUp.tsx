@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { Button } from "../components/common/Button";
 import { Input } from "../components/common/Input";
