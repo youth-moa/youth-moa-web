@@ -20,7 +20,7 @@ export function Button({
 
   return (
     <button
-      className={`${bgColor} ${textColor} ${border} ${borderColor} rounded-lg py-[15px] font-semibold h-full w-full flex items-center justify-center`}
+      className={`${bgColor} ${textColor} ${border} ${borderColor} h-full rounded-lg py-[15px] font-semibold w-full flex items-center justify-center`}
       type="button"
       onClick={onClick}
       {...rest}

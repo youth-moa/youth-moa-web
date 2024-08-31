@@ -1,7 +1,7 @@
 import {
   Route,
   createBrowserRouter,
-  createRoutesFromElements
+  createRoutesFromElements,
 } from "react-router-dom";
 
 import Layout from "../layouts/Layout";
@@ -10,6 +10,7 @@ import SignUpPage from "../pages/SignUp";
 import HomePage from "../pages/Home";
 import ProgramPage from "../pages/Program";
 import NoticePage from "../pages/Notice";
+import FindAccountPage from "../pages/FindAccount";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,8 +18,9 @@ export const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
+      <Route path="/find/:findType" element={<FindAccountPage />} />
       <Route path="/program" element={<ProgramPage />} />
       <Route path="/notice" element={<NoticePage />} />
     </Route>
   )
-)
+);
