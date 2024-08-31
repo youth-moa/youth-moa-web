@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/common/Button";
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
+import { BUTTON_TYPE } from "../constants/keys";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -20,8 +21,14 @@ export default function LoginPage() {
       <div className={"my-4"} />
 
       <section className="flex flex-col w-full gap-2 max-w-96">
-        <Button onClick={() => console.log("click")}>로그인</Button>
-        <Button type="outlined" onClick={() => navigate("/sign-up")}>
+        <Button style={{ height: "52px" }} onClick={() => console.log("click")}>
+          로그인
+        </Button>
+        <Button
+          type={BUTTON_TYPE.outlined}
+          style={{ height: "52px" }}
+          onClick={() => navigate("/sign-up")}
+        >
           회원가입
         </Button>
       </section>
@@ -31,7 +38,7 @@ export default function LoginPage() {
       <section className="flex items-center gap-2 text-blue">
         <button
           className="h-full px-2 text-sm font-semibold"
-          onClick={() => navigate("/find/id")}
+          onClick={() => navigate("/find/id?step=check")}
         >
           아이디 찾기
         </button>
