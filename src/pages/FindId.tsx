@@ -127,7 +127,7 @@ export default function FindIdPage() {
             <Button
               type={BUTTON_TYPE.outlined}
               style={{ height: "52px" }}
-              onClick={() => navigate("/find/password")}
+              onClick={() => navigate("/find/password?step=check")}
             >
               비밀번호 찾기
             </Button>
