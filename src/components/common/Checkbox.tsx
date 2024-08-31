@@ -28,7 +28,7 @@ function CheckboxComponent(props: PropsType, ref: Ref<HTMLInputElement>) {
   return (
     <label
       htmlFor={checkboxId}
-      className={`w-fit flex items-center justify-center gap-5 cursor-pointer ${
+      className={`w-full flex items-center justify-center gap-5 cursor-pointer ${
         disabled && "pointer-events-none cursor-not-allowed"
       }`}
     >
@@ -49,10 +49,10 @@ function CheckboxComponent(props: PropsType, ref: Ref<HTMLInputElement>) {
           "flex justify-center items-center w-4 h-4 text-base text-white rounded-[3px] border-2 border-black transition-colors duration-75 ease-linear peer-checked:bg-blue peer-checked:border-blue peer-disabled:bg-gray-005 peer-disabled:border-gray-005 peer-disabled:peer-checked:bg-gray-005 peer-disabled:peer-checked:border-gray-005"
         }
       >
-        {isChecked && <span className="select-none">✓</span>}
+        {isChecked && <span className="text-xs select-none">✓</span>}
       </div>
 
-      <span className={"select-none"}>{children}</span>
+      <span className={"select-none w-full"}>{children}</span>
     </label>
   );
 }

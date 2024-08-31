@@ -11,6 +11,7 @@ export default {
         "border-gray": "rgba(217, 217, 217, 1)",
         "header-black": "rgba(50, 50, 50, 1)",
         "gray-005": "rgba(245, 245, 245, 1)",
+        "gray-002": "rgba(144, 144, 146, 1)",
         red: "rgba(254, 38, 38, 1)",
       },
     },

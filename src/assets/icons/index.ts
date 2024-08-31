@@ -5,9 +5,18 @@ import IcoDownload from "./download.svg?react";
 import IcoEyeSlash from "./eye-slash.svg?react";
 import IcoEye from "./eye.svg?react";
 import IcoHamburger from "./hamburger.svg?react";
+import IcoNext from "./next.svg?react";
 import IcoSearch from "./search.svg?react";
 import IcoSetting from "./setting.svg?react";
 
-
-
-export { IcoAlarm, IcoCheckOutlined, IcoDownload, IcoEyeSlash, IcoEye, IcoHamburger, IcoSearch, IcoSetting }
+export {
+  IcoAlarm,
+  IcoCheckOutlined,
+  IcoDownload,
+  IcoEyeSlash,
+  IcoEye,
+  IcoHamburger,
+  IcoNext,
+  IcoSearch,
+  IcoSetting,
+};

@@ -9,8 +9,9 @@ import { Checkbox } from "../components/common/Checkbox";
 import { List } from "../components/sign-up/List";
 import { InputContainer } from "../components/sign-up/InputContainer";
 
-import { IcoCheckOutlined, IcoSearch } from "../assets";
+import { IcoCheckOutlined, IcoNext, IcoSearch } from "../assets";
 import { BUTTON_TYPE } from "../constants/keys";
+import { DatePicker } from "../components/common/DatePicker";
 // import { AccountType } from "../types/auth";
 
 export default function SignUpPage() {
@@ -45,10 +46,10 @@ export default function SignUpPage() {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-5">
+    <div className="flex flex-col items-center justify-center h-full px-5 py-12">
       <Title title="회원가입" />
 
-      <ul className="w-full flex flex-col gap-4 my-14 max-w-[46rem] items-center justify-center md:gap-7">
+      <ul className="w-full flex flex-col gap-5 my-14 max-w-[46rem] items-center justify-center md:gap-7">
         <List>
           <Label label="아이디" required className="col-span-1" />
 
@@ -139,25 +140,31 @@ export default function SignUpPage() {
 
         <List>
           <Label label="생년월일" required className="col-span-1" />
-          {/* TODO: Date Picker 컴포넌트 추가 */}
+          <InputContainer>
+            <DatePicker />
+          </InputContainer>
         </List>
 
         <li className="flex flex-col items-start w-full gap-2 md:grid md:grid-cols-4">
           <Label label="이용약관 동의" required className="col-span-1" />
-          <div className="flex flex-col col-span-2 gap-3 mx-2">
+          <div className="flex flex-col w-full gap-3 p-2 md:col-span-2">
             <Checkbox ref={agreeSignUpRef}>
               <div className="flex items-center justify-between w-full">
                 <p>회원가입약관</p>
-                {/* TODO: > 아이콘 교체 */}
-                <button>약관보기 {`>`}</button>
+                <button className="flex items-center gap-2 text-blue">
+                  약관보기
+                  <IcoNext />
+                </button>
               </div>
             </Checkbox>
 
             <Checkbox ref={agreePersonalInfoRef}>
               <div className="flex items-center justify-between w-full">
                 <p>개인정보처리방침안내</p>
-                {/* TODO: > 아이콘 교체 */}
-                <button>약관보기 {`>`}</button>
+                <button className="flex items-center gap-2 text-blue">
+                  약관보기
+                  <IcoNext />
+                </button>
               </div>
             </Checkbox>
           </div>
