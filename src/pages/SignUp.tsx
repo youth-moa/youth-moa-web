@@ -11,6 +11,7 @@ import { InputContainer } from "../components/sign-up/InputContainer";
 
 import { IcoCheckOutlined, IcoNext, IcoSearch } from "../assets";
 import { BUTTON_TYPE } from "../constants/keys";
+import { DatePicker } from "../components/common/DatePicker";
 // import { AccountType } from "../types/auth";
 
 export default function SignUpPage() {
@@ -45,10 +46,10 @@ export default function SignUpPage() {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-5">
+    <div className="flex flex-col items-center justify-center h-full px-5 py-12">
       <Title title="회원가입" />
 
-      <ul className="w-full flex flex-col gap-4 my-14 max-w-[46rem] items-center justify-center md:gap-7">
+      <ul className="w-full flex flex-col gap-5 my-14 max-w-[46rem] items-center justify-center md:gap-7">
         <List>
           <Label label="아이디" required className="col-span-1" />
 
@@ -139,7 +140,9 @@ export default function SignUpPage() {
 
         <List>
           <Label label="생년월일" required className="col-span-1" />
-          {/* TODO: Date Picker 컴포넌트 추가 */}
+          <InputContainer>
+            <DatePicker />
+          </InputContainer>
         </List>
 
         <li className="flex flex-col items-start w-full gap-2 md:grid md:grid-cols-4">
