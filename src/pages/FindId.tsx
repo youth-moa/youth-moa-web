@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Input } from "../components/common/Input";
@@ -19,13 +19,20 @@ export default function FindIdPage() {
   const isSecondStep = step === "results";
 
   const [userInfo, setUserInfo] = useState({
-    email: "eodrmfdl1004@naver.com",
-    createdAt: "2024.01.11",
+    email: "",
+    createdAt: "",
   });
 
   const handleFindId = () => {
     navigate("/find/id?step=results");
   };
+
+  useEffect(() => {
+    setUserInfo({
+      email: "eodrmfdl1004@naver.com",
+      createdAt: "2024.01.11",
+    });
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center h-full px-5 py-14 md:p-5">
