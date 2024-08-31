@@ -7,6 +7,8 @@ import { IcoCardSearchOutlined, IcoSetting, IcoUser } from "../assets";
 import { Label } from "../components/common/Label";
 import { Button } from "../components/common/Button";
 import { BUTTON_TYPE } from "../constants/keys";
+import { IconContainer } from "../components/account/IconContainer";
+import { IconLabel } from "../components/account/IconLabel";
 
 export default function FindIdPage() {
   const navigate = useNavigate();
@@ -132,29 +134,5 @@ export default function FindIdPage() {
         </>
       )}
     </div>
-  );
-}
-
-function IconContainer({ children }: { children: ReactNode }) {
-  return (
-    <span className="relative flex flex-col items-center">{children}</span>
-  );
-}
-
-function IconLabel({
-  label,
-  activate = true,
-}: {
-  label: string;
-  activate?: boolean;
-}) {
-  return (
-    <span
-      className={`absolute w-max text-xs font-semibold -bottom-6 ${
-        activate ? "text-blue" : "text-gray-003"
-      }`}
-    >
-      {label}
-    </span>
   );
 }

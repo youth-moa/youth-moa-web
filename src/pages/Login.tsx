@@ -45,7 +45,7 @@ export default function LoginPage() {
         <span className="w-[2px] h-[14px] bg-blue" />
         <button
           className="h-full px-2 text-sm font-semibold"
-          onClick={() => navigate("/find/password")}
+          onClick={() => navigate("/find/password?step=check")}
         >
           비밀번호 찾기
         </button>
