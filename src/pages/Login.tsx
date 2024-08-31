@@ -29,11 +29,17 @@ export default function LoginPage() {
       <div className={"my-2"} />
 
       <section className="flex items-center gap-2 text-blue">
-        <button className="h-full px-2 text-sm font-semibold">
+        <button
+          className="h-full px-2 text-sm font-semibold"
+          onClick={() => navigate("/find/id")}
+        >
           아이디 찾기
         </button>
         <span className="w-[2px] h-[14px] bg-blue" />
-        <button className="h-full px-2 text-sm font-semibold">
+        <button
+          className="h-full px-2 text-sm font-semibold"
+          onClick={() => navigate("/find/password")}
+        >
           비밀번호 찾기
         </button>
       </section>
