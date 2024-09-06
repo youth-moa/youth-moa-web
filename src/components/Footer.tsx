@@ -25,7 +25,10 @@ export default function Footer() {
 
       <section className="flex-col hidden gap-3 text-xs md:flex">
         <p>Email: helpmoa@naver.com</p>
-        <p>본 웹사이트는 2024 경기청년 갭이어 프로그램의 지원을 받아 제작되었습니다.</p>
+        <p>
+          본 웹사이트는 2024 경기청년 갭이어 프로그램의 지원을 받아
+          제작되었습니다.
+        </p>
       </section>
     </footer>
   );
