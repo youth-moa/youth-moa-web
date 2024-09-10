@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+
+import AuthContainer from "../layouts/AuthContainer";
+
 import { Button } from "../components/common/Button";
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
@@ -8,7 +11,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-5">
+    <AuthContainer>
       <Title title="로그인" />
 
       <div className={"my-9"} />
@@ -50,6 +53,6 @@ export default function LoginPage() {
           비밀번호 찾기
         </button>
       </section>
-    </div>
+    </AuthContainer>
   );
 }

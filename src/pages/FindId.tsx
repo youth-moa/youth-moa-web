@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import AuthContainer from "../layouts/AuthContainer";
+
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
 import { IcoCardSearchOutlined, IcoSetting, IcoUser } from "../assets";
@@ -35,7 +37,7 @@ export default function FindIdPage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full px-5 py-14 md:p-5">
+    <AuthContainer>
       <Title title="아이디 찾기" />
 
       <div className={"my-4"} />
@@ -140,6 +142,6 @@ export default function FindIdPage() {
           </section>
         </>
       )}
-    </div>
+    </AuthContainer>
   );
 }

@@ -1,5 +1,7 @@
 import { useRef } from "react";
 
+import AuthContainer from "../layouts/AuthContainer";
+
 import { Button } from "../components/common/Button";
 import { Input } from "../components/common/Input";
 import { Label } from "../components/common/Label";
@@ -8,10 +10,10 @@ import { Radio } from "../components/common/Radio";
 import { Checkbox } from "../components/common/Checkbox";
 import { List } from "../components/sign-up/List";
 import { InputContainer } from "../components/sign-up/InputContainer";
+import { DatePicker } from "../components/common/DatePicker";
 
 import { IcoCheckOutlined, IcoNext, IcoSearch } from "../assets";
 import { BUTTON_TYPE } from "../constants/keys";
-import { DatePicker } from "../components/common/DatePicker";
 // import { AccountType } from "../types/auth";
 
 export default function SignUpPage() {
@@ -46,7 +48,7 @@ export default function SignUpPage() {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-full px-5 py-12">
+    <AuthContainer>
       <Title title="회원가입" />
 
       <ul className="w-full flex flex-col gap-5 my-14 max-w-[46rem] items-center justify-center md:gap-7">
@@ -63,7 +65,7 @@ export default function SignUpPage() {
               onClick={() => console.log("클릭")}
             >
               <span className="flex items-center justify-center gap-2">
-                <IcoCheckOutlined />
+                <IcoCheckOutlined stroke="#303CE9" />
                 중복 확인
               </span>
             </Button>
@@ -153,7 +155,7 @@ export default function SignUpPage() {
                 <p>회원가입약관</p>
                 <button className="flex items-center gap-2 text-blue">
                   약관보기
-                  <IcoNext />
+                  <IcoNext fill="#0264FB" />
                 </button>
               </div>
             </Checkbox>
@@ -163,7 +165,7 @@ export default function SignUpPage() {
                 <p>개인정보처리방침안내</p>
                 <button className="flex items-center gap-2 text-blue">
                   약관보기
-                  <IcoNext />
+                  <IcoNext fill="#0264FB" />
                 </button>
               </div>
             </Checkbox>
@@ -174,6 +176,6 @@ export default function SignUpPage() {
       <div className="w-full md:max-w-[364px]">
         <Button onClick={onSignUp}>가입하기</Button>
       </div>
-    </div>
+    </AuthContainer>
   );
 }
