@@ -197,6 +197,8 @@ export default function HomePage() {
             onClick={() => spaceSwiper?.slideNext()}
           />
         </div>
+
+        <div className={"my-24"} />
       </section>
     </>
   );
