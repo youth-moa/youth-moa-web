@@ -91,7 +91,7 @@ export default function HomePage() {
         </SwiperContainer>
       </section>
 
-      <section className="w-full max-w-[55rem] px-5 py-16 m-auto">
+      <section className="w-full max-w-[57.5rem] px-5 py-16 m-auto">
         <SubTitle text="프로그램" />
 
         <div className="flex items-center justify-between mt-2 mb-11">
@@ -151,7 +151,7 @@ export default function HomePage() {
         <SubTitle text="공지사항" className="text-white" />
       </section> */}
 
-      <section className="w-full max-w-[55rem] px-5 py-16 m-auto">
+      <section className="w-full max-w-[57.5rem] px-5 py-16 m-auto">
         <SubTitle text="공간안내" />
 
         <div className="flex items-center justify-between mt-2 mb-11">
