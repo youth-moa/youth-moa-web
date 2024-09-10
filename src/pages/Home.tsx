@@ -80,14 +80,17 @@ export default function HomePage() {
           }}
         >
           {banners?.map((banner) => (
-            <SwiperSlide key={banner.id} className="flex flex-col w-full">
-              <img className="object-cover h-[30rem]" src={banner.src} />
+            <SwiperSlide
+              key={banner.id}
+              className="flex flex-col w-full h-[15rem] sm:h-[20rem] md:h-[30rem]"
+            >
+              <img className="object-cover h-full" src={banner.src} />
             </SwiperSlide>
           ))}
         </SwiperContainer>
       </section>
 
-      <section className="px-5 py-16 md:px-72">
+      <section className="w-full max-w-[55rem] px-5 py-16 m-auto">
         <SubTitle text="프로그램" />
 
         <div className="flex items-center justify-between mt-2 mb-11">
@@ -147,7 +150,7 @@ export default function HomePage() {
         <SubTitle text="공지사항" className="text-white" />
       </section> */}
 
-      <section className="px-5 py-16 md:px-72">
+      <section className="w-full max-w-[55rem] px-5 py-16 m-auto">
         <SubTitle text="공간안내" />
 
         <div className="flex items-center justify-between mt-2 mb-11">
