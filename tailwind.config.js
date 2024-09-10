@@ -10,6 +10,7 @@ export default {
         blue: "rgba(63, 48, 233, 1)",
         "border-gray": "rgba(217, 217, 217, 1)",
         "header-black": "rgba(50, 50, 50, 1)",
+        "tag-gray": "rgba(110, 112, 116, 1)",
         "gray-005": "rgba(245, 245, 245, 1)",
         "gray-003": "rgba(197, 197, 197, 1)",
         "gray-002": "rgba(144, 144, 146, 1)",

@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
+import AuthContainer from "../layouts/AuthContainer";
+
 import { Title } from "../components/common/Title";
 import { IconContainer } from "../components/account/IconContainer";
 import { IcoCardSearchOutlined, IcoUser } from "../assets";
@@ -26,7 +28,7 @@ export default function FindPasswordPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-5">
+    <AuthContainer>
       <Title title="비밀번호 찾기" />
 
       <div className={"my-4"} />
@@ -109,6 +111,6 @@ export default function FindPasswordPage() {
           확인
         </Button>
       </section>
-    </div>
+    </AuthContainer>
   );
 }

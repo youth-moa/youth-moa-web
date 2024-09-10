@@ -11,8 +11,10 @@ import {
 export default function Header() {
   return (
     <header className="sticky top-0 flex items-center justify-between px-5 py-7 shadow-header bg-white md:px-10 md:py-3.5 z-50">
-      <Logo height={30} className="hidden md:inline-block" />
-      <Symbol height={25} className="md:hidden" />
+      <Link to="/">
+        <Logo height={30} className="hidden md:inline-block" />
+        <Symbol height={25} className="md:hidden" />
+      </Link>
 
       <ul className="hidden text-xl font-semibold md:flex gap-x-24">
         <li>

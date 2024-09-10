@@ -1,0 +1,40 @@
+{
+  "programs": [
+    {
+      "id": 0,
+      "title": "디저트로 떠나는 세계여행",
+      "startAt": "2024-07-11",
+      "endAt": "2024-07-25",
+      "thumbnail": "https://png.pngtree.com/png-clipart/20201216/original/pngtree-pink-fresh-gourmet-dessert-poster-png-image_5702293.jpg"
+    },
+    {
+      "id": 1,
+      "title": "그림심리상담",
+      "startAt": "2024-06-14",
+      "endAt": "2024-07-27",
+      "thumbnail": "https://www.sangji.ac.kr/images/counsel/main/mslide01.jpg"
+    },
+    {
+      "id": 2,
+      "title": "상상홍보 서포터즈 1기",
+      "startAt": "2024-06-28",
+      "endAt": "2024-10-10",
+      "thumbnail": "https://cdn.imweb.me/upload/S202111228851439219c50/336b161a34153.png"
+    },
+    {
+      "id": 3,
+      "title": "나에게 맞는 운동찾기",
+      "startAt": "2024-04-17",
+      "endAt": "2024-04-22",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4CEX-dk4iLqtme4Pw4pMBBd-NLD6LLFIh_w&s"
+    },
+    {
+      "id": 4,
+      "title": "디저트로 떠나는 세계여행",
+      "startAt": "2024-07-11",
+      "endAt": "2024-07-25",
+      "thumbnail": "https://png.pngtree.com/png-clipart/20201216/original/pngtree-pink-fresh-gourmet-dessert-poster-png-image_5702293.jpg"
+    }
+  ],
+  "count": 5
+}
