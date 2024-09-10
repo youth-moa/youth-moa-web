@@ -22,7 +22,8 @@ import { CommonKey, ProgramKey } from "../queries/keys";
 export default function HomePage() {
   const navigate = useNavigate();
 
-  const [swiper, setSwiper] = useState<Swiper | undefined>();
+  const [programSwiper, setProgramSwiper] = useState<Swiper | undefined>();
+  const [spaceSwiper, setSpaceSwiper] = useState<Swiper | undefined>();
 
   // TODO: api 연동 및 useQuery 변경
   const { data: programs } = useQuery({
@@ -108,7 +109,7 @@ export default function HomePage() {
         <div className="relative">
           <PrevButton
             className="top-20 -left-6"
-            onClick={() => swiper?.slidePrev()}
+            onClick={() => programSwiper?.slidePrev()}
           />
 
           <SwiperContainer
@@ -117,7 +118,7 @@ export default function HomePage() {
             loop={true}
             grabCursor={true}
             modules={[Navigation]}
-            onBeforeInit={(swipper) => setSwiper(swipper)}
+            onBeforeInit={(swipper) => setProgramSwiper(swipper)}
           >
             {programs?.map((program) => (
               <SwiperSlide
@@ -141,7 +142,7 @@ export default function HomePage() {
 
           <NextButton
             className="top-20 -right-6"
-            onClick={() => swiper?.slideNext()}
+            onClick={() => programSwiper?.slideNext()}
           />
         </div>
       </section>
@@ -168,7 +169,7 @@ export default function HomePage() {
         <div className="relative">
           <PrevButton
             className="top-20 -left-6"
-            onClick={() => swiper?.slidePrev()}
+            onClick={() => spaceSwiper?.slidePrev()}
           />
           <SwiperContainer
             slidesPerView={"auto"}
@@ -176,7 +177,7 @@ export default function HomePage() {
             loop={true}
             grabCursor={true}
             modules={[Navigation]}
-            onBeforeInit={(swipper) => setSwiper(swipper)}
+            onBeforeInit={(swipper) => setSpaceSwiper(swipper)}
           >
             {spaces?.map((space) => (
               <SwiperSlide
@@ -193,7 +194,7 @@ export default function HomePage() {
 
           <NextButton
             className="top-20 -right-6"
-            onClick={() => swiper?.slideNext()}
+            onClick={() => spaceSwiper?.slideNext()}
           />
         </div>
       </section>
