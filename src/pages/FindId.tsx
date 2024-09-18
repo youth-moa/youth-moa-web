@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import AuthContainer from "../layouts/AuthContainer";
+import Container from "../layouts/Container";
 
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
@@ -37,7 +37,7 @@ export default function FindIdPage() {
   }, []);
 
   return (
-    <AuthContainer>
+    <Container>
       <Title title="아이디 찾기" />
 
       <div className={"my-4"} />
@@ -142,6 +142,6 @@ export default function FindIdPage() {
           </section>
         </>
       )}
-    </AuthContainer>
+    </Container>
   );
 }

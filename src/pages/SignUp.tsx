@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import AuthContainer from "../layouts/AuthContainer";
+import Container from "../layouts/Container";
 
 import { Button } from "../components/common/Button";
 import { Input } from "../components/common/Input";
@@ -48,7 +48,7 @@ export default function SignUpPage() {
   );
 
   return (
-    <AuthContainer>
+    <Container>
       <Title title="회원가입" />
 
       <ul className="w-full flex flex-col gap-5 my-14 max-w-[46rem] items-center justify-center md:gap-7">
@@ -176,6 +176,6 @@ export default function SignUpPage() {
       <div className="w-full md:max-w-[364px]">
         <Button onClick={onSignUp}>가입하기</Button>
       </div>
-    </AuthContainer>
+    </Container>
   );
 }
