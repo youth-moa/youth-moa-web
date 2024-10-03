@@ -1,13 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ComponentProps, useState } from "react";
 import { IcoEye, IcoEyeSlash } from "../../assets";
 
-interface PropsType {
+interface PropsType extends ComponentProps<"input"> {
   type?: "text" | "password" | "number";
   placeholder?: string;
 }
 
 // TODO: forwardRef 로 감싸기
-export function Input({ type = "text", placeholder }: PropsType) {
+export function Input({ type = "text", placeholder, ...rest }: PropsType) {
   const [isVisible, setIsVisible] = useState(false);
 
   const inputType = (type === "password" && isVisible) || type === "number";
@@ -30,6 +30,7 @@ export function Input({ type = "text", placeholder }: PropsType) {
         placeholder={placeholder}
         className="w-full px-4 py-3 border rounded-lg border-border-gray"
         onChange={handleChange}
+        {...rest}
       />
       {type === "password" && isVisible && (
         <IcoEye

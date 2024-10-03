@@ -1,9 +1,12 @@
 export interface AccountType {
-  email: string,
-  password: string,
-  name: string,
-  phone: string,
-  address: string,
-  gender: "mail" | "femail",
-  birth: string,
+  personalAgree: boolean;
+  termsOfService: boolean;
+  userAddress: string;
+  userBirthday: string;
+  userEmail: string;
+  userGender: "M" | "F";
+  userName: string;
+  userPassword: string;
+  userPasswordCheck: string;
+  userPhoneNumber: string;
 }
