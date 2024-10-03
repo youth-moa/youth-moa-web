@@ -6,4 +6,5 @@ export const CommonKey = {
 
 export const ProgramKey = {
   program: "program",
+  region: "region",
 };

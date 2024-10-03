@@ -9,7 +9,7 @@ import "swiper/css/effect-fade";
 import Swiper from "swiper";
 import { Swiper as SwiperContainer, SwiperSlide } from "swiper/react";
 import { SubTitle } from "../components/home/SubTitle";
-import { ProgramCard } from "../components/home/ProgramCard";
+import { ProgramCard } from "../components/common/ProgramCard";
 import { NextButton } from "../components/home/NextButton";
 import { PrevButton } from "../components/home/PrevButton";
 import { Button } from "../components/common/Button";

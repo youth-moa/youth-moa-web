@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import AuthContainer from "../layouts/AuthContainer";
+import Container from "../layouts/Container";
 
 import { Title } from "../components/common/Title";
 import { IconContainer } from "../components/account/IconContainer";
@@ -28,7 +28,7 @@ export default function FindPasswordPage() {
   };
 
   return (
-    <AuthContainer>
+    <Container>
       <Title title="비밀번호 찾기" />
 
       <div className={"my-4"} />
@@ -111,6 +111,6 @@ export default function FindPasswordPage() {
           확인
         </Button>
       </section>
-    </AuthContainer>
+    </Container>
   );
 }
