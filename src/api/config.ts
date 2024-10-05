@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 // TODO: request, response 수정
-api.interceptors.response.use(({ headers, data }) => {
+api.interceptors.response.use(({ data }) => {
   // const { accountReducer } = store.getState();
   // const userInfo = accountReducer.userInfo;
   // const token = headers.authorization;
