@@ -8,7 +8,7 @@ interface PropsType extends ComponentProps<"input"> {
 }
 
 export function Input(props: PropsType) {
-  const { type = "text", placeholder, helpText, ...rest } = props;
+  const { type = "text", placeholder, helpText, onChange, ...rest } = props;
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -19,10 +19,12 @@ export function Input(props: PropsType) {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (type !== "number") return;
+    if (type === "number") {
+      const input = event.target;
+      input.value = input.value.replace(/[^0-9]/g, "");
+    }
 
-    const input = event.target;
-    input.value = input.value.replace(/[^0-9]/g, "");
+    onChange && onChange(event);
   };
 
   return (
