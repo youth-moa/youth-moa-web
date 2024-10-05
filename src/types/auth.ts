@@ -18,12 +18,36 @@ export interface LoginResponse {
   refreshToken: string;
 }
 
-export interface SignUpResponse {
+export interface CommonResponse {
   success: boolean;
   message: string;
 }
 
-export interface CheckEmailResponse {
+export interface FindEmailRequest {
+  userName: string;
+  userPhoneNumber: string;
+}
+
+export interface FindEmailResponse {
   success: boolean;
   message: string;
+  userEmail: string;
+  createdAt: string;
+}
+
+export interface FindPasswordRequest {
+  userEmail: string;
+  userPhoneNumber: string;
+}
+
+export interface FindPasswordResponse {
+  success: boolean;
+  message: string;
+  userId: number;
+  userExists: boolean;
+}
+
+export interface ChangePasswordRequest {
+  newPassword: string;
+  newPasswordCheck: string;
 }
