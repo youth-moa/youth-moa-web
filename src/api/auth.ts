@@ -1,18 +1,26 @@
 import { api } from "./config";
-import { AccountType } from "../types/auth";
+import {
+  AccountType,
+  LoginResponse,
+  CheckEmailResponse,
+  SignUpResponse,
+} from "../types/auth";
 
 /** 회원가입 */
-export function signUp(body: AccountType) {
+export function signUp(body: AccountType): Promise<SignUpResponse> {
   return api.post("/api/users/join", body);
 }
 
 /** 로그인 */
-export function login(body: { userEmail: string; userPassword: string }) {
+export function login(body: {
+  userEmail: string;
+  userPassword: string;
+}): Promise<LoginResponse> {
   return api.post("/api/users/login", body);
 }
 
 /** 이메일 중복 확인 */
-export function checkEmail(userEmail: string) {
+export function checkEmail(userEmail: string): Promise<CheckEmailResponse> {
   return api.get(`/api/users/check-email?userEmail=${userEmail}`);
 }
 

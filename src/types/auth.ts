@@ -10,3 +10,13 @@ export interface AccountType {
   userPasswordCheck: string;
   userPhoneNumber: string;
 }
+
+export interface SignUpResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface CheckEmailResponse {
+  success: boolean;
+  message: string;
+}

@@ -4,10 +4,12 @@ import { IcoEye, IcoEyeSlash } from "../../assets";
 interface PropsType extends ComponentProps<"input"> {
   type?: "text" | "password" | "number";
   placeholder?: string;
+  helpText?: string;
 }
 
-// TODO: forwardRef 로 감싸기
-export function Input({ type = "text", placeholder, ...rest }: PropsType) {
+export function Input(props: PropsType) {
+  const { type = "text", placeholder, helpText, ...rest } = props;
+
   const [isVisible, setIsVisible] = useState(false);
 
   const inputType = (type === "password" && isVisible) || type === "number";
@@ -28,7 +30,9 @@ export function Input({ type = "text", placeholder, ...rest }: PropsType) {
       <input
         type={inputType ? "text" : type}
         placeholder={placeholder}
-        className="w-full px-4 py-3 border rounded-lg border-border-gray"
+        className={`w-full px-4 py-3 border rounded-lg ${
+          helpText ? "border-red" : "border-border-gray"
+        }`}
         onChange={handleChange}
         {...rest}
       />
@@ -43,6 +47,12 @@ export function Input({ type = "text", placeholder, ...rest }: PropsType) {
           onClick={handleShowPw}
           className="absolute translate-x-0 -translate-y-1/2 cursor-pointer top-1/2 right-4"
         />
+      )}
+
+      {helpText && (
+        <p className={`absolute text-red text-xs ml-4 mt-1/2 w-max`}>
+          {helpText}
+        </p>
       )}
     </div>
   );

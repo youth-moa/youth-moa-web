@@ -7,4 +7,18 @@ const api = axios.create({
   },
 });
 
+// TODO: request, response 수정
+api.interceptors.response.use(({ headers, data }) => {
+  // const { accountReducer } = store.getState();
+  // const userInfo = accountReducer.userInfo;
+  // const token = headers.authorization;
+  // if (headers.authorization && userInfo) {
+  //   store.dispatch(signIn({ token, userInfo }));
+  // }
+  // if (data instanceof Blob) {
+  //   return data;
+  // }
+  return data;
+});
+
 export { api };
