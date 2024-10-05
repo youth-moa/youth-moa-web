@@ -55,6 +55,11 @@ export default function SignUpPage() {
   const [birthdayErrorMsg, setBirthdayErrorMsg] = useState("");
 
   useEffect(() => {
+    setIsCheckEmail(false);
+    setEmailErrorMsg("");
+  }, [user.userEmail]);
+
+  useEffect(() => {
     const regex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 
@@ -85,12 +90,11 @@ export default function SignUpPage() {
 
   const handleChangeUser = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
 
-    if (name === "userEmail") {
-      setIsCheckEmail(false);
-      setEmailErrorMsg("");
-    }
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleCheckEmail = async () => {
@@ -279,7 +283,7 @@ export default function SignUpPage() {
             <Label label="핸드폰 번호" required className="col-span-1" />
             <InputContainer>
               <Input
-                type="text"
+                type="number"
                 placeholder="숫자만 입력해주세요. (ex. 01012345678)"
                 name="userPhoneNumber"
                 value={user.userPhoneNumber}
