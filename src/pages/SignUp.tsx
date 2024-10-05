@@ -186,7 +186,7 @@ export default function SignUpPage() {
         throw response;
       }
 
-      navigate("/login");
+      navigate("/login", { replace: true });
     } catch (error: any) {
       console.error(error);
     }
