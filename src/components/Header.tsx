@@ -23,9 +23,9 @@ export default function Header() {
         <li>
           <Link to="/program">프로그램</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/notice">공지사항</Link>
-        </li>
+        </li> */}
       </ul>
 
       <ul className="flex gap-x-3">
