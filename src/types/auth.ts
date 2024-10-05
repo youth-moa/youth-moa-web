@@ -11,6 +11,13 @@ export interface AccountType {
   userPhoneNumber: string;
 }
 
+export interface LoginResponse {
+  success: boolean;
+  message: string;
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface SignUpResponse {
   success: boolean;
   message: string;
