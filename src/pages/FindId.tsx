@@ -84,7 +84,7 @@ export default function FindIdPage() {
           ...prev,
           alert: {
             isShow: true,
-            message: error.message,
+            message: error.response.data.message,
           },
         }));
     }

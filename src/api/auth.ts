@@ -2,14 +2,16 @@ import { api } from "./config";
 import {
   AccountType,
   LoginResponse,
-  CheckEmailResponse,
-  SignUpResponse,
+  CommonResponse,
   FindEmailRequest,
   FindEmailResponse,
+  FindPasswordRequest,
+  FindPasswordResponse,
+  ChangePasswordRequest,
 } from "../types/auth";
 
 /** 회원가입 */
-export function signUp(body: AccountType): Promise<SignUpResponse> {
+export function signUp(body: AccountType): Promise<CommonResponse> {
   return api.post("/api/users/join", body);
 }
 
@@ -22,7 +24,7 @@ export function login(body: {
 }
 
 /** 이메일 중복 확인 */
-export function checkEmail(userEmail: string): Promise<CheckEmailResponse> {
+export function checkEmail(userEmail: string): Promise<CommonResponse> {
   return api.get(`/api/users/check-email?userEmail=${userEmail}`);
 }
 
@@ -32,10 +34,9 @@ export function findEmail(body: FindEmailRequest): Promise<FindEmailResponse> {
 }
 
 /** 회원 정보 확인 (비밀번호 찾기) */
-export function findPassword(body: {
-  userEmail: string;
-  userPhoneNumber: string;
-}) {
+export function findPassword(
+  body: FindPasswordRequest
+): Promise<FindPasswordResponse> {
   return api.post("/api/users/password/find", body);
 }
 
@@ -44,9 +45,9 @@ export function changePassword({
   userId,
   body,
 }: {
-  userId: string;
-  body: { newPassword: string; newPasswordCheck: string };
-}) {
+  userId: number;
+  body: ChangePasswordRequest;
+}): Promise<CommonResponse> {
   return api.patch(`/api/users/${userId}/password`, body);
 }
 
