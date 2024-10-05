@@ -78,7 +78,6 @@ export default function LoginPage() {
         }));
     }
   };
-  console.log(localStorage.getItem("accessToken"));
   return (
     <Container>
       <Title title="로그인" />
