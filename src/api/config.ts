@@ -8,17 +8,24 @@ const api = axios.create({
 });
 
 // TODO: request, response 수정
-api.interceptors.response.use(({ data }) => {
-  // const { accountReducer } = store.getState();
-  // const userInfo = accountReducer.userInfo;
-  // const token = headers.authorization;
-  // if (headers.authorization && userInfo) {
-  //   store.dispatch(signIn({ token, userInfo }));
+api.interceptors.request.use((config) => {
+  config.headers["Authorization"] = localStorage.getItem("accessToken");
+  config.headers["refreshToken"] = localStorage.getItem("refreshToken");
+
+  return config;
+});
+
+api.interceptors.response.use((response) => {
+  // if (response.headers["Authorization"]) {
+  //   localStorage.removeItem("accessToken");
+  //   localStorage.setItem("accessToken", response.headers["Authrization"]);
+  // } else if (response.data.error === "INVALID_TOKEN") {
+  //   localStorage.removeItem("accessToken");
+  //   localStorage.removeItem("refreshToken");
+  //   // 토근 재발급
   // }
-  // if (data instanceof Blob) {
-  //   return data;
-  // }
-  return data;
+
+  return response.data;
 });
 
 export { api };

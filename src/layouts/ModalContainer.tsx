@@ -19,7 +19,7 @@ export function ModalContainer(props: PropsType) {
         />
 
         <div
-          className="relative flex flex-col w-full overflow-hidden bg-white sm:w-fit h-fit rounded-xl min-w-96"
+          className="relative flex flex-col w-full mx-1 overflow-hidden bg-white sm:w-fit h-fit rounded-xl md:min-w-96"
           onClick={(e) => e.stopPropagation()}
         >
           {children}

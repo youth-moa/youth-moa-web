@@ -4,6 +4,7 @@ import IcoCardSearchOutlined from "./card-search-outlined.svg?react";
 import IcoCheckFilled from "./check-filled.svg?react";
 import IcoCheckOutlined from "./check-outlined.svg?react";
 import IcoDownload from "./download.svg?react";
+import IcoErrorCircle from "./error-circle.svg?react";
 import IcoEyeSlash from "./eye-slash.svg?react";
 import IcoEye from "./eye.svg?react";
 import IcoFilter from "./filter.svg?react";
@@ -19,6 +20,7 @@ export {
   IcoCardSearchOutlined,
   IcoCheckFilled,
   IcoCheckOutlined,
+  IcoErrorCircle,
   IcoDownload,
   IcoEyeSlash,
   IcoEye,
