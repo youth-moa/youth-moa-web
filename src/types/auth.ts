@@ -10,3 +10,20 @@ export interface AccountType {
   userPasswordCheck: string;
   userPhoneNumber: string;
 }
+
+export interface LoginResponse {
+  success: boolean;
+  message: string;
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface SignUpResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface CheckEmailResponse {
+  success: boolean;
+  message: string;
+}
