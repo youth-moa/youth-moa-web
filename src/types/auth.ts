@@ -27,3 +27,15 @@ export interface CheckEmailResponse {
   success: boolean;
   message: string;
 }
+
+export interface FindEmailRequest {
+  userName: string;
+  userPhoneNumber: string;
+}
+
+export interface FindEmailResponse {
+  success: boolean;
+  message: string;
+  userEmail: string;
+  createdAt: string;
+}

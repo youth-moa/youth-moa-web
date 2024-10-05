@@ -4,6 +4,8 @@ import {
   LoginResponse,
   CheckEmailResponse,
   SignUpResponse,
+  FindEmailRequest,
+  FindEmailResponse,
 } from "../types/auth";
 
 /** 회원가입 */
@@ -25,10 +27,7 @@ export function checkEmail(userEmail: string): Promise<CheckEmailResponse> {
 }
 
 /** 아이디 찾기 */
-export function findEmail(body: {
-  userEmail: string;
-  userPhoneNumber: string;
-}) {
+export function findEmail(body: FindEmailRequest): Promise<FindEmailResponse> {
   return api.post("/api/users/email/find", body);
 }
 
