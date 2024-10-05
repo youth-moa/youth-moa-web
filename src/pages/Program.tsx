@@ -242,7 +242,7 @@ function Item(props: ItemPropsType) {
         {isChecked ? (
           <IcoCheckFilled
             fill="rgba(63, 48, 233, 1)"
-            stroke="rgba(63, 48, 233, 1)"
+            stroke="white"
             width={14}
           />
         ) : (
