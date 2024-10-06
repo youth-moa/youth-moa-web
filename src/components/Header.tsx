@@ -69,11 +69,11 @@ export default function Header() {
       </ul>
 
       <ul className="flex gap-x-3">
-        <li>
+        {/* <li>
           <Link to="/">
             <IcoAlarm />
           </Link>
-        </li>
+        </li> */}
         <li className="hidden md:inline-block">
           <Link to="/">
             <IcoSetting />
