@@ -8,7 +8,6 @@ import { ProgramType } from "../types/program";
 import { StatusBadge } from "../components/common/StatusBadge";
 import { List } from "../components/sign-up/List";
 import { Label } from "../components/common/Label";
-import { InputContainer } from "../components/sign-up/InputContainer";
 import { Input } from "../components/common/Input";
 import { Button } from "../components/common/Button";
 import { BUTTON_TYPE } from "../constants/keys";
