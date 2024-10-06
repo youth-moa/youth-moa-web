@@ -80,7 +80,7 @@ export default function Header() {
           </Link>
         </li>
         <li
-          className="hidden md:inline-block"
+          className="hidden cursor-pointer md:inline-block"
           onClick={accessToken ? onLogout : onLogin}
         >
           <IcoDownload />
