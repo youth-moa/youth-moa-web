@@ -8,7 +8,15 @@ export interface ProgramListType {
 }
 
 export interface RegionListType {
-  id: string | number;
-  name: string;
-  centers: string[];
+  id: number;
+  regionName: string;
+  count: number;
+}
+
+export interface ProgramFilterModalType {
+  isOpen: boolean;
+  title: string;
+  list: any[];
+  selected: any[];
+  onSelected: (data?: number[]) => void;
 }
