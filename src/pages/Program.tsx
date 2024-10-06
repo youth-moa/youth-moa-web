@@ -16,11 +16,14 @@ import {
   IcoRefresh,
 } from "../assets";
 import { ProgramKey } from "../queries/keys";
+import { useNavigate } from "react-router-dom";
 
 const SORT_LIST = ["전체", "진행중", "최신순", "인기순"];
 const MAX_NUM = 15;
 
 export default function ProgramPage() {
+  const navigate = useNavigate();
+
   // TODO: api 연동 및 useQuery 변경
   const { data: regions } = useQuery({
     queryKey: [ProgramKey.region],
@@ -84,6 +87,10 @@ export default function ProgramPage() {
     }
 
     setSelectedCenters((prev) => [...prev, center]);
+  };
+
+  const handleApplyProgram = (programId: number) => {
+    navigate(`/program/detail/${programId}`);
   };
 
   return (
@@ -213,8 +220,7 @@ export default function ProgramPage() {
               <ProgramCard
                 key={program.id}
                 {...program}
-                status="진행중"
-                onClick={() => {}}
+                onClick={() => handleApplyProgram(program.id)}
               />
             ))}
           </div>
