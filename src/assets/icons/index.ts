@@ -14,6 +14,8 @@ import IcoNext from "./next.svg?react";
 import IcoPrev from "./prev.svg?react";
 import IcoRefresh from "./refresh.svg?react";
 import IcoSearch from "./search.svg?react";
+import IcoStarOutlined from "./star-outlined.svg?react";
+import IcoStarFilled from "./start-filled.svg?react";
 import IcoSetting from "./setting.svg?react";
 import IcoUser from "./user.svg?react";
 
@@ -33,6 +35,8 @@ export {
   IcoPrev,
   IcoRefresh,
   IcoSearch,
+  IcoStarOutlined,
+  IcoStarFilled,
   IcoSetting,
   IcoUser,
 };
