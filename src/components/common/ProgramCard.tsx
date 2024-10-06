@@ -1,4 +1,6 @@
+import { IcoStarFilled, IcoStarOutlined } from "../../assets";
 import { Button } from "./Button";
+import { StatusBadge } from "./StatusBadge";
 
 interface PropsType {
   title: string;
@@ -19,8 +21,16 @@ export function ProgramCard(props: PropsType) {
       <div className="flex flex-col gap-1">
         {status && (
           <div className="flex items-center justify-between">
-            <span>{status}</span>
-            {isLiked ? "★" : "☆"}
+            <StatusBadge status={status} />
+            {isLiked ? (
+              <button>
+                <IcoStarFilled />
+              </button>
+            ) : (
+              <button>
+                <IcoStarOutlined />
+              </button>
+            )}
           </div>
         )}
         <h4 className="text-base text-header-black">{title}</h4>

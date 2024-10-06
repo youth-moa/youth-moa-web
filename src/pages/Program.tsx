@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import Container from "../layouts/Container";
@@ -8,15 +8,17 @@ import { ProgramCard } from "../components/common/ProgramCard";
 
 import type { ProgramListType, RegionListType } from "../types/program";
 import {
+  IcoArrowUp,
   IcoCheckFilled,
   IcoCheckOutlined,
   IcoFilter,
   IcoNext,
+  IcoRefresh,
 } from "../assets";
 import { ProgramKey } from "../queries/keys";
-import { api } from "../api/config";
 
 const SORT_LIST = ["전체", "진행중", "최신순", "인기순"];
+const MAX_NUM = 15;
 
 export default function ProgramPage() {
   // TODO: api 연동 및 useQuery 변경
@@ -30,10 +32,6 @@ export default function ProgramPage() {
       return data;
     },
   });
-
-  useEffect(() => {
-    api.get("/");
-  }, []);
 
   // TODO: api 연동 및 useQuery 변경
   const { data: programs } = useQuery({
@@ -52,6 +50,10 @@ export default function ProgramPage() {
   );
   const [selectedCenters, setSelectedCenters] = useState<string[]>([]);
   const [sorted, setSorted] = useState("전체");
+  const [isShow, setIsShow] = useState({
+    region: true,
+    center: true,
+  });
 
   const centers =
     selectedRegions.length > 0
@@ -123,17 +125,25 @@ export default function ProgramPage() {
         <section className="flex-col hidden gap-3 md:flex min-w-64">
           <div className="flex items-center justify-between px-5 py-3 text-white rounded-lg bg-blue">
             <p className="text-xl font-semibold">필터</p>
-            <button className="text-sm">초기화</button>
+            <button className="flex items-center gap-1">
+              <IcoRefresh />
+              <span className="text-sm">초기화</span>
+            </button>
           </div>
 
           <div>
-            <button className="flex items-center justify-between w-full px-5 py-3 text-black border-2 rounded-lg border-gray-004">
+            <button
+              className="flex items-center justify-between w-full px-5 py-3 text-black border-2 rounded-lg border-gray-004"
+              onClick={() =>
+                setIsShow((prev) => ({ ...prev, region: !prev.region }))
+              }
+            >
               <p className="text-xl font-semibold">지역</p>
-              <button>아이콘</button>
+              <IcoArrowUp />
             </button>
 
             <div className="px-5 py-3 rounded-b-lg bg-gray-005">
-              {regions?.map((region) => (
+              {regions?.slice(0, MAX_NUM).map((region) => (
                 <Item
                   key={region.id}
                   name={region.name}
@@ -143,24 +153,34 @@ export default function ProgramPage() {
                 />
               ))}
 
-              <div className="my-3" />
+              {regions && regions.length > MAX_NUM && (
+                <>
+                  <div className="my-3" />
 
-              <div className="flex justify-end">
-                <button className="flex items-center gap-2 text-sm text-gray-000">
-                  지역 더보기
-                  <IcoNext fill="rgba(111, 111, 111, 1)" />
-                </button>
-              </div>
+                  <div className="flex justify-end">
+                    <button className="flex items-center gap-2 text-sm text-gray-000">
+                      지역 더보기
+                      <IcoNext fill="rgba(111, 111, 111, 1)" />
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
           <div>
-            <button className="flex items-center justify-between w-full px-5 py-3 text-black border-2 rounded-lg border-gray-004">
+            <button
+              className="flex items-center justify-between w-full px-5 py-3 text-black border-2 rounded-lg border-gray-004"
+              onClick={() =>
+                setIsShow((prev) => ({ ...prev, center: !prev.center }))
+              }
+            >
               <p className="text-xl font-semibold">청년센터</p>
+              <IcoArrowUp />
             </button>
 
             <div className="px-5 py-3 rounded-b-lg bg-gray-005">
-              {centers?.map((center, index) => (
+              {centers?.slice(0, MAX_NUM).map((center, index) => (
                 <Item
                   key={index}
                   name={center}
@@ -169,14 +189,18 @@ export default function ProgramPage() {
                 />
               ))}
 
-              <div className="my-3" />
+              {centers && centers.length > MAX_NUM && (
+                <>
+                  <div className="my-3" />
 
-              <div className="flex justify-end">
-                <button className="flex items-center gap-2 text-sm text-gray-000">
-                  청년센터 더보기
-                  <IcoNext fill="rgba(111, 111, 111, 1)" />
-                </button>
-              </div>
+                  <div className="flex justify-end">
+                    <button className="flex items-center gap-2 text-sm text-gray-000">
+                      청년센터 더보기
+                      <IcoNext fill="rgba(111, 111, 111, 1)" />
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -190,7 +214,6 @@ export default function ProgramPage() {
                 key={program.id}
                 {...program}
                 status="진행중"
-                isLiked={true}
                 onClick={() => {}}
               />
             ))}
