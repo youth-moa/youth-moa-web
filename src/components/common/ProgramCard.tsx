@@ -1,41 +1,57 @@
-import { Button } from "./Button";
+// import { IcoStarFilled, IcoStarOutlined } from "../../assets";
+import { StatusBadge } from "./StatusBadge";
 
 interface PropsType {
-  title: string;
-  startAt: string;
-  endAt: string;
-  thumbnail: string;
+  programName: string;
+  programStartDate: string;
+  programEndDate: string;
+  programImageUrl: string;
   status?: "진행중" | "마감";
   isLiked?: boolean;
   onClick?: () => void;
 }
 
 export function ProgramCard(props: PropsType) {
-  const { title, startAt, endAt, thumbnail, status, isLiked, onClick } = props;
+  const {
+    programName,
+    programStartDate,
+    programEndDate,
+    programImageUrl,
+    status,
+    // isLiked,
+    onClick,
+  } = props;
   return (
-    <section className="flex flex-col gap-3">
-      <img src={thumbnail} className="h-[184px] object-cover rounded-lg" />
+    <section
+      className={`flex flex-col gap-3 ${onClick ? "cursor-pointer" : ""}`}
+      onClick={onClick}
+    >
+      <img
+        src={programImageUrl}
+        className="h-[184px] object-cover rounded-lg"
+      />
 
       <div className="flex flex-col gap-1">
         {status && (
           <div className="flex items-center justify-between">
-            <span>{status}</span>
-            {isLiked ? "★" : "☆"}
+            <StatusBadge status={status} />
+            {/* TODO: 즐겨찾기 고도화 */}
+            {/* {isLiked ? (
+              <button>
+                <IcoStarFilled />
+              </button>
+            ) : (
+              <button>
+                <IcoStarOutlined />
+              </button>
+            )} */}
           </div>
         )}
-        <h4 className="text-base text-header-black">{title}</h4>
+        <h4 className="text-base text-header-black">{programName}</h4>
         <p className="text-sm text-gray-000">
-          {startAt} ~ {endAt}
+          {programStartDate} ~ {programEndDate}
         </p>
       </div>
-
-      {onClick && (
-        <div className="h-10">
-          <Button onClick={onClick} disabled={status === "마감"}>
-            신청하기
-          </Button>
-        </div>
-      )}
     </section>
   );
 }

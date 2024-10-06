@@ -2,66 +2,88 @@
   "regions": [
     {
       "id": 0,
-      "name": "가평군",
-      "centers": ["가평1", "가평2", "가평3", "가평4", "가평5", "가평6", "가평7"]
+      "regionName": "가평군",
+      "count": 3
     },
     {
       "id": 1,
-      "name": "고양시",
-      "centers": ["고양1", "고양2", "고양3", "고양4", "고양5", "고양6"]
+      "regionName": "고양시",
+      "count": 5
     },
     {
       "id": 2,
-      "name": "구리시",
-      "centers": ["구리1", "구리2", "구리3", "구리4", "구리5", "구리6", "구리7"]
+      "regionName": "구리시",
+      "count": 3
     },
     {
       "id": 3,
-      "name": "군포시",
-      "centers": ["군포1", "군포2"]
+      "regionName": "군포시",
+      "count": 3
     },
     {
       "id": 4,
-      "name": "과천시",
-      "centers": ["과천1", "과천2", "과천3", "과천4", "과천5", "과천6", "과천7"]
+      "regionName": "과천시",
+      "count": 10
     },
     {
       "id": 5,
-      "name": "광명시",
-      "centers": ["광명1", "광명2", "광명3", "광명4", "광명5", "광명6", "광명7"]
+      "regionName": "광명시",
+      "count": 3
     },
     {
       "id": 6,
-      "name": "김포시",
-      "centers": ["김포1"]
+      "regionName": "김포시",
+      "count": 7
     },
     {
       "id": 7,
-      "name": "남양주시",
-      "centers": ["남양주1", "남양주2", "남양주3", "남양주4", "남양주5"]
+      "regionName": "남양주시",
+      "count": 8
     },
     {
       "id": 8,
-      "name": "동두천시",
-      "centers": [
-        "동두천1",
-        "동두천2",
-        "동두천3",
-        "동두천4",
-        "동두천5",
-        "동두천6",
-        "동두천7"
-      ]
+      "regionName": "동두천시",
+      "count": 3
     },
     {
       "id": 9,
-      "name": "부천시",
-      "centers": ["부천1", "부천2", "부천3"]
+      "regionName": "부천시",
+      "count": 1
     },
     {
       "id": 10,
-      "name": "성남시",
-      "centers": ["성남1"]
+      "regionName": "성남시",
+      "count": 3
+    },
+    {
+      "id": 11,
+      "regionName": "부천시",
+      "count": 3
+    },
+    {
+      "id": 12,
+      "regionName": "성남시",
+      "count": 3
+    },
+    {
+      "id": 13,
+      "regionName": "부천시",
+      "count": 3
+    },
+    {
+      "id": 14,
+      "regionName": "성남시",
+      "count": 3
+    },
+    {
+      "id": 15,
+      "regionName": "부천시",
+      "count": 7
+    },
+    {
+      "id": 16,
+      "regionName": "성남시",
+      "count": 9
     }
   ]
 }

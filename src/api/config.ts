@@ -9,8 +9,12 @@ const api = axios.create({
 
 // TODO: request, response 수정
 api.interceptors.request.use((config) => {
-  config.headers["Authorization"] = localStorage.getItem("accessToken");
-  config.headers["refreshToken"] = localStorage.getItem("refreshToken");
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (accessToken) {
+    config.headers["Authorization"] = `Bearer ${accessToken}`;
+  }
+  // config.headers["refreshToken"] = localStorage.getItem("refreshToken");
 
   return config;
 });
