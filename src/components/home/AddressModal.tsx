@@ -17,7 +17,7 @@ export function AddressModal(porps: PropsType) {
   };
 
   return (
-    <ModalContainer onClose={onClose}>
+    <ModalContainer onClose={onClose} className="sm:w-fit md:min-w-96">
       <DaumPostcode onComplete={handleComplete} autoClose />
     </ModalContainer>
   );
