@@ -23,6 +23,11 @@ export function login(body: {
   return api.post("/api/users/login", body);
 }
 
+/** 로그아웃 */
+export function logout(): Promise<CommonResponse> {
+  return api.post(`/api/users/logout`);
+}
+
 /** 이메일 중복 확인 */
 export function checkEmail(userEmail: string): Promise<CommonResponse> {
   return api.get(`/api/users/check-email?userEmail=${userEmail}`);
@@ -52,7 +57,7 @@ export function changePassword({
 }
 
 /** 토큰 만료 여부 확인 */
-export function checkExpirationToken() {
+export function checkExpirationToken(): Promise<any> {
   return api.get("/api/users/token/check-expiration");
 }
 

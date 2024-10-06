@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   IcoAlarm,
   IcoDownload,
@@ -7,8 +7,48 @@ import {
   Logo,
   Symbol,
 } from "../assets";
+import { useUser } from "../hooks/useUser";
+import { logout } from "../api/auth";
+import { useContext } from "react";
+import { CommonContext } from "../store/CommonContext";
+import { toast } from "react-toastify";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const { setCommon } = useContext(CommonContext);
+
+  const { accessToken } = useUser();
+
+  const onLogin = () => {
+    navigate("/login");
+  };
+
+  const onLogout = async () => {
+    try {
+      const response = await logout();
+
+      if (!response.success) {
+        throw response;
+      }
+
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+
+      toast.success("로그아웃 되었습니다.");
+    } catch (error: any) {
+      console.error(error);
+
+      setCommon &&
+        setCommon((prev) => ({
+          ...prev,
+          alert: {
+            isShow: true,
+            message: error.response.data.message,
+          },
+        }));
+    }
+  };
+
   return (
     <header className="sticky top-0 flex items-center justify-between px-5 py-7 shadow-header bg-white md:px-10 md:py-3.5 z-50">
       <Link to="/">
@@ -39,10 +79,11 @@ export default function Header() {
             <IcoSetting />
           </Link>
         </li>
-        <li className="hidden md:inline-block">
-          <Link to="/login">
-            <IcoDownload />
-          </Link>
+        <li
+          className="hidden md:inline-block"
+          onClick={accessToken ? onLogout : onLogin}
+        >
+          <IcoDownload />
         </li>
         <li className="md:hidden">
           <IcoHamburger />
