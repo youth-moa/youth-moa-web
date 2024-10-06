@@ -175,6 +175,8 @@ export default function ProgramApplyPage() {
 
         <Section>
           <SubTitle title="추가 정보" />
+
+          {/* TODO: 추가 정보 추가 */}
         </Section>
 
         <Section>
