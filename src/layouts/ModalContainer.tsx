@@ -5,10 +5,11 @@ import { Portal } from "../components/common/Portal";
 interface PropsType {
   children: ReactNode;
   onClose?: () => void;
+  className?: string;
 }
 
 export function ModalContainer(props: PropsType) {
-  const { children, onClose } = props;
+  const { children, onClose, className } = props;
 
   return (
     <Portal portalId="modal">
@@ -19,7 +20,7 @@ export function ModalContainer(props: PropsType) {
         />
 
         <div
-          className="relative flex flex-col w-full mx-1 overflow-hidden bg-white sm:w-fit h-fit rounded-xl md:min-w-96"
+          className={`relative flex flex-col w-full mx-1 overflow-hidden bg-white h-fit max-h-[30rem] rounded-xl ${className}`}
           onClick={(e) => e.stopPropagation()}
         >
           {children}

@@ -1,5 +1,4 @@
 // import { IcoStarFilled, IcoStarOutlined } from "../../assets";
-import { Button } from "./Button";
 import { StatusBadge } from "./StatusBadge";
 
 interface PropsType {
@@ -23,7 +22,10 @@ export function ProgramCard(props: PropsType) {
     onClick,
   } = props;
   return (
-    <section className="flex flex-col gap-3">
+    <section
+      className={`flex flex-col gap-3 ${onClick ? "cursor-pointer" : ""}`}
+      onClick={onClick}
+    >
       <img
         src={programImageUrl}
         className="h-[184px] object-cover rounded-lg"
@@ -50,14 +52,6 @@ export function ProgramCard(props: PropsType) {
           {programStartDate} ~ {programEndDate}
         </p>
       </div>
-
-      {onClick && (
-        <div className="h-10">
-          <Button onClick={onClick} disabled={status === "마감"}>
-            신청하기
-          </Button>
-        </div>
-      )}
     </section>
   );
 }
