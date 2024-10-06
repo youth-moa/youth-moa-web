@@ -19,6 +19,7 @@ export default {
         green: "rgba(69, 180, 25, 1)",
         red: "rgba(254, 38, 38, 1)",
       },
+      boxShadow: { base: "0px 0px 4px 0px rgba(0, 0, 0, 0.20);" },
     },
   },
   plugins: [],
