@@ -2,7 +2,7 @@ export interface ProgramListType {
   id: number;
   programImageUrl: string;
   programName: string;
-  status: "IN_PROGRESS" | "PENDING";
+  status: "IN_PROGRESS" | "CLOSED";
   programStartDate: string;
   programEndDate: string;
 }
@@ -40,6 +40,42 @@ export interface ProgramListRequestBody {
   sort?: string;
   page?: number;
   size?: number;
+}
+
+export interface ProgramListResponse {
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  content: {
+    id: number;
+    programImageUrl: string;
+    programName: string;
+    status: "IN_PROGRESS" | "CLOSED";
+    programStartDate: string;
+    programEndDate: string;
+  }[];
+  number: number;
+  sort: {
+    empty: boolean;
+    sorted: boolean;
+    unsorted: boolean;
+  };
+  numberOfElements: number;
+  pageable: {
+    offset: number;
+    sort: {
+      empty: boolean;
+      sorted: boolean;
+      unsorted: boolean;
+    };
+    pageNumber: number;
+    pageSize: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  first: boolean;
+  last: boolean;
+  empty: boolean;
 }
 
 export interface RegionListResponse {

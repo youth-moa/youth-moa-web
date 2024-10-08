@@ -9,7 +9,7 @@ import { ProgramCard } from "../components/common/ProgramCard";
 import { FilterModal } from "../components/program/FilterModal";
 import { Button } from "../components/common/Button";
 
-import type { ProgramFilterModalType, ProgramListType } from "../types/program";
+import type { ProgramFilterModalType } from "../types/program";
 import {
   IcoArrowUp,
   IcoCheckFilled,
@@ -19,48 +19,29 @@ import {
   IcoRefresh,
 } from "../assets";
 import { CommonKey, ProgramKey } from "../queries/keys";
-import { getCenterList, getRegionList } from "../api/program";
+import { getCenterList, getProgramList, getRegionList } from "../api/program";
+import { PROGRAM_SORT } from "../constants/keys";
 
-const SORT_LIST = ["전체", "진행중", "최신순", "인기순"];
+const SORT_LIST = [
+  { key: PROGRAM_SORT.TOTAL, name: "전체" },
+  { key: PROGRAM_SORT.PROGRESS, name: "진행중" },
+  { key: PROGRAM_SORT.LATEST, name: "최신순" },
+  { key: PROGRAM_SORT.POPULAR, name: "인기순" },
+];
 const MAX_NUM = 15;
 
 export default function ProgramPage() {
   const navigate = useNavigate();
 
-  const { data: regions } = useQuery({
-    queryKey: [CommonKey.list, { type: ProgramKey.region }],
-    queryFn: async () => {
-      const data = getRegionList();
-
-      return data;
-    },
-  });
-
-  // TODO: 센터 정보 api 연동 및 useQuery 변경
-  const { data: centers } = useQuery({
-    queryKey: [CommonKey.list, { type: ProgramKey.center }],
-    queryFn: async () => {
-      const data = await getCenterList({ regionId: selectedRegions });
-
-      return data;
-    },
-  });
-
-  // TODO: api 연동 및 useQuery 변경
-  const { data: programs } = useQuery({
-    queryKey: [CommonKey.list, { type: ProgramKey.program }],
-    queryFn: async (): Promise<ProgramListType[]> => {
-      const data = await fetch("dummy-data/program.json")
-        .then((res) => res.json())
-        .then((data) => data.programs);
-
-      return data;
-    },
-  });
-
   const [selectedRegions, setSelectedRegions] = useState<number[]>([]);
   const [selectedCenters, setSelectedCenters] = useState<number[]>([]);
-  const [sorted, setSorted] = useState("전체");
+  const [sorted, setSorted] = useState(PROGRAM_SORT.TOTAL);
+  // TODO: 페이지네이션 추가
+  const [page, setPage] = useState({
+    current: 0,
+    total: 0,
+  });
+  const [totalCounts, setTotalCounts] = useState(0);
   // const [isShow, setIsShow] = useState({
   //   region: true,
   //   center: true,
@@ -73,7 +54,35 @@ export default function ProgramPage() {
     onSelected: () => {},
   });
 
-  const programNum = programs?.length ?? 0;
+  const { data: regions } = useQuery({
+    queryKey: [CommonKey.list, { type: ProgramKey.region }],
+    queryFn: async () => {
+      const data = getRegionList();
+
+      return data;
+    },
+  });
+
+  const { data: centers } = useQuery({
+    queryKey: [CommonKey.list, { type: ProgramKey.center }],
+    queryFn: async () => {
+      const data = await getCenterList({ regionId: selectedRegions });
+
+      return data;
+    },
+  });
+
+  // TODO: mutation 추가
+  const { data: programs } = useQuery({
+    queryKey: [CommonKey.list, { type: ProgramKey.program }],
+    queryFn: async () => {
+      const data = await getProgramList();
+      setTotalCounts(data.totalElements);
+      setPage({ total: data.totalPages, current: data.pageable.pageNumber });
+
+      return data.content;
+    },
+  });
 
   const handleClick = (filter: string) => {
     setSorted(filter);
@@ -123,7 +132,7 @@ export default function ProgramPage() {
 
           <div className="flex flex-col items-start justify-between w-full gap-3 md:items-center md:flex-row">
             <span>
-              전체 <strong className="text-blue">{programNum}</strong> 건
+              전체 <strong className="text-blue">{totalCounts}</strong> 건
             </span>
 
             <div className="flex items-center justify-between w-full md:w-fit">
@@ -131,9 +140,9 @@ export default function ProgramPage() {
                 {SORT_LIST.map((item, index) => (
                   <Badge
                     key={index}
-                    name={item}
-                    isSelected={item === sorted}
-                    onClick={() => handleClick(item)}
+                    name={item.name}
+                    isSelected={item.key === sorted}
+                    onClick={() => handleClick(item.key)}
                   />
                 ))}
               </div>
@@ -279,7 +288,7 @@ export default function ProgramPage() {
                   <div className="h-10">
                     <Button
                       onClick={() => handleApplyProgram(program.id)}
-                      disabled={program.status === "PENDING"}
+                      disabled={program.status === "CLOSED"}
                     >
                       <span className="flex items-center gap-2">
                         <IcoCheckOutlined stroke="white" width={16} />

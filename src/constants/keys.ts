@@ -5,5 +5,12 @@ export const BUTTON_TYPE = {
 
 export const PROGRAM_STATUS = {
   IN_PROGRESS: "진행중",
-  PENDING: "마감",
+  CLOSED: "마감",
 } as const;
+
+export const PROGRAM_SORT = {
+  TOTAL: "",
+  LATEST: "latest",
+  POPULAR: "popular",
+  PROGRESS: "progress",
+};
