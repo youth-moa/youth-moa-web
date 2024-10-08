@@ -7,12 +7,6 @@ export interface ProgramListType {
   programEndDate: string;
 }
 
-export interface RegionListType {
-  id: number;
-  regionName: string;
-  count: number;
-}
-
 export interface ProgramFilterModalType {
   isOpen: boolean;
   title: string;
@@ -46,4 +40,10 @@ export interface ProgramListRequestBody {
   sort?: string;
   page?: number;
   size?: number;
+}
+
+export interface ProgramListResponse {
+  id: number;
+  regionName: string;
+  centerCount: number;
 }

@@ -1,4 +1,4 @@
-import { ProgramListRequestBody } from "../types/program";
+import { ProgramListRequestBody, ProgramListResponse } from "../types/program";
 import { encodeQueryData } from "../utils";
 import { api } from "./config";
 
@@ -8,4 +8,9 @@ export function getProgramList(params?: {
 }): Promise<any> {
   const queryParams = params ? `?${encodeQueryData(params)}` : "";
   return api.get(`/api/programs/program-list${queryParams}`);
+}
+
+/** 지역 목록 조회 */
+export function getRegionList(): Promise<ProgramListResponse[]> {
+  return api.get(`/api/programs/regions`);
 }

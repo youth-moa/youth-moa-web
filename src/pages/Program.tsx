@@ -7,12 +7,9 @@ import Container from "../layouts/Container";
 import { Title } from "../components/common/Title";
 import { ProgramCard } from "../components/common/ProgramCard";
 import { FilterModal } from "../components/program/FilterModal";
+import { Button } from "../components/common/Button";
 
-import type {
-  ProgramFilterModalType,
-  ProgramListType,
-  RegionListType,
-} from "../types/program";
+import type { ProgramFilterModalType, ProgramListType } from "../types/program";
 import {
   IcoArrowUp,
   IcoCheckFilled,
@@ -21,8 +18,8 @@ import {
   IcoNext,
   IcoRefresh,
 } from "../assets";
-import { ProgramKey } from "../queries/keys";
-import { Button } from "../components/common/Button";
+import { CommonKey, ProgramKey } from "../queries/keys";
+import { getRegionList } from "../api/program";
 
 const SORT_LIST = ["전체", "진행중", "최신순", "인기순"];
 const MAX_NUM = 15;
@@ -30,13 +27,10 @@ const MAX_NUM = 15;
 export default function ProgramPage() {
   const navigate = useNavigate();
 
-  // TODO: api 연동 및 useQuery 변경
   const { data: regions } = useQuery({
-    queryKey: [ProgramKey.region],
-    queryFn: async (): Promise<RegionListType[]> => {
-      const data = await fetch("dummy-data/region.json")
-        .then((res) => res.json())
-        .then((data) => data.regions);
+    queryKey: [CommonKey.list, { type: ProgramKey.region }],
+    queryFn: async () => {
+      const data = getRegionList();
 
       return data;
     },
@@ -44,7 +38,7 @@ export default function ProgramPage() {
 
   // TODO: 센터 정보 api 연동 및 useQuery 변경
   const { data: centers } = useQuery({
-    queryKey: [ProgramKey.center],
+    queryKey: [CommonKey.list, { type: ProgramKey.center }],
     queryFn: async (): Promise<any[]> => {
       const data = await fetch("dummy-data/center.json")
         .then((res) => res.json())
@@ -56,7 +50,7 @@ export default function ProgramPage() {
 
   // TODO: api 연동 및 useQuery 변경
   const { data: programs } = useQuery({
-    queryKey: [ProgramKey.program],
+    queryKey: [CommonKey.list, { type: ProgramKey.program }],
     queryFn: async (): Promise<ProgramListType[]> => {
       const data = await fetch("dummy-data/program.json")
         .then((res) => res.json())
@@ -183,7 +177,7 @@ export default function ProgramPage() {
                   <Item
                     key={region.id}
                     name={region.regionName}
-                    count={region.count}
+                    count={region.centerCount}
                     isChecked={selectedRegions.includes(region.id)}
                     onClick={() => handleSelectRegion(region.id)}
                   />
@@ -203,7 +197,7 @@ export default function ProgramPage() {
                             list: regions.map((region) => ({
                               id: region.id,
                               name: region.regionName,
-                              count: region.count,
+                              count: region.centerCount,
                             })),
                             selected: selectedRegions,
                             onSelected: (data?: number[]) => {
