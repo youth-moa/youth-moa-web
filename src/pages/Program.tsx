@@ -108,7 +108,7 @@ export default function ProgramPage() {
   };
 
   const handleApplyProgram = (programId: number) => {
-    navigate(`/program/${programId}/apply`);
+    navigate(`/program/apply/${programId}`);
   };
 
   const handleCloseModal = () => {

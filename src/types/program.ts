@@ -20,3 +20,22 @@ export interface ProgramFilterModalType {
   selected: any[];
   onSelected: (data?: number[]) => void;
 }
+
+export interface ProgramType {
+  id: number;
+  programName: string;
+  programShortDesc: string;
+  applyStartDate: string;
+  applyEndDate: string;
+  programStartDate: string;
+  programEndDate: string;
+  capacity: number;
+  applicationCount: number;
+  contactInfo: string;
+  programImageUrl: string;
+  regionId: number;
+  regionName: string;
+  centerId: number;
+  centerName: string;
+  status: string;
+}

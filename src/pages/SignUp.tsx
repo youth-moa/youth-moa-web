@@ -303,7 +303,7 @@ export default function SignUpPage() {
                     onClick={() => setIsAddressOpen(true)}
                   >
                     <span className="flex items-center justify-center gap-2">
-                      <IcoSearch />
+                      <IcoSearch stroke="#303CE9" />
                       주소 검색
                     </span>
                   </Button>
