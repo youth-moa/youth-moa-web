@@ -2,7 +2,7 @@ export interface ProgramListType {
   id: number;
   programImageUrl: string;
   programName: string;
-  status: "진행중" | "마감";
+  status: "IN_PROGRESS" | "PENDING";
   programStartDate: string;
   programEndDate: string;
 }
@@ -38,4 +38,12 @@ export interface ProgramType {
   centerId: number;
   centerName: string;
   status: string;
+}
+
+export interface ProgramListRequestBody {
+  regionId?: number;
+  centerId?: number;
+  sort?: string;
+  page?: number;
+  size?: number;
 }

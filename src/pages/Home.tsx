@@ -15,10 +15,11 @@ import { PrevButton } from "../components/home/PrevButton";
 import { Button } from "../components/common/Button";
 import { IcoCheckOutlined, IcoNext } from "../assets";
 
-import type { BannerListType, SpaceListType } from "../types/common";
+import type { BannerListType } from "../types/common";
 import type { ProgramListType } from "../types/program";
 import { CommonKey, ProgramKey } from "../queries/keys";
 import { getSpageList } from "../api/common";
+import { getProgramList } from "../api/program";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -26,19 +27,18 @@ export default function HomePage() {
   const [programSwiper, setProgramSwiper] = useState<Swiper | undefined>();
   const [spaceSwiper, setSpaceSwiper] = useState<Swiper | undefined>();
 
-  // TODO: api 연동 및 useQuery 변경
   const { data: programs } = useQuery({
     queryKey: [CommonKey.list, { type: ProgramKey.program }],
     queryFn: async (): Promise<ProgramListType[]> => {
-      const data = await fetch("dummy-data/program.json")
-        .then((res) => res.json())
-        .then((data) => data.programs);
+      const params = {
+        size: 30,
+      };
+      const data = await getProgramList({ params });
 
-      return data;
+      return data.content;
     },
   });
 
-  // TODO: api 연동 및 useQuery 변경
   const { data: spaces } = useQuery({
     queryKey: [CommonKey.list, { type: CommonKey.space }],
     queryFn: async () => {
