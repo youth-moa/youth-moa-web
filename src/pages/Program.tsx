@@ -19,7 +19,7 @@ import {
   IcoRefresh,
 } from "../assets";
 import { CommonKey, ProgramKey } from "../queries/keys";
-import { getRegionList } from "../api/program";
+import { getCenterList, getRegionList } from "../api/program";
 
 const SORT_LIST = ["전체", "진행중", "최신순", "인기순"];
 const MAX_NUM = 15;
@@ -39,10 +39,8 @@ export default function ProgramPage() {
   // TODO: 센터 정보 api 연동 및 useQuery 변경
   const { data: centers } = useQuery({
     queryKey: [CommonKey.list, { type: ProgramKey.center }],
-    queryFn: async (): Promise<any[]> => {
-      const data = await fetch("dummy-data/center.json")
-        .then((res) => res.json())
-        .then((data) => data.centers);
+    queryFn: async () => {
+      const data = await getCenterList({ regionId: selectedRegions });
 
       return data;
     },
@@ -60,9 +58,7 @@ export default function ProgramPage() {
     },
   });
 
-  const [selectedRegions, setSelectedRegions] = useState<(number | string)[]>(
-    []
-  );
+  const [selectedRegions, setSelectedRegions] = useState<number[]>([]);
   const [selectedCenters, setSelectedCenters] = useState<number[]>([]);
   const [sorted, setSorted] = useState("전체");
   // const [isShow, setIsShow] = useState({
@@ -83,7 +79,7 @@ export default function ProgramPage() {
     setSorted(filter);
   };
 
-  const handleSelectRegion = (regionId: number | string) => {
+  const handleSelectRegion = (regionId: number) => {
     if (selectedRegions.includes(regionId)) {
       setSelectedRegions((prev) => prev.filter((id) => id !== regionId));
       return;

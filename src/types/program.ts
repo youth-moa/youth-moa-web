@@ -42,8 +42,19 @@ export interface ProgramListRequestBody {
   size?: number;
 }
 
-export interface ProgramListResponse {
+export interface RegionListResponse {
   id: number;
   regionName: string;
   centerCount: number;
+}
+
+export interface CenterListRequestBody {
+  regionId: number[];
+}
+
+export interface CenterListResponse {
+  id: number;
+  centerName: string;
+  regionId: number;
+  regionName: string;
 }
