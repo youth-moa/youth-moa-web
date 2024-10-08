@@ -1,6 +1,7 @@
 import {
   CenterListRequestBody,
   CenterListResponse,
+  ProgramDetailType,
   ProgramListRequestBody,
   ProgramListResponse,
   RegionListResponse,
@@ -26,4 +27,9 @@ export function getCenterList({
   regionId,
 }: CenterListRequestBody): Promise<CenterListResponse[]> {
   return api.get(`/api/programs/centers?regionId=${regionId}`);
+}
+
+/** 프로그램 상세조회 */
+export function getProgramById(programId: number): Promise<ProgramDetailType> {
+  return api.get(`/api/programs?programId=${programId}`);
 }

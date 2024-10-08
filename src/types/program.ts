@@ -94,3 +94,27 @@ export interface CenterListResponse {
   regionId: number;
   regionName: string;
 }
+
+export interface ProgramDetailType {
+  id: number;
+  programResponseDTO: {
+    programImageUrl: string;
+    programName: string;
+    status: "IN_PROGRESS" | "CLOSED";
+    programStartDate: string;
+    programEndDate: string;
+  };
+  programShortDesc: string;
+  applyStartDate: string;
+  applyEndDate: string;
+  capacity: number;
+  applicationCount: number;
+  contactInfo: string;
+  programImageUrl: string;
+  programDetail: string;
+  regionId: number;
+  regionName: string;
+  centerId: number;
+  centerName: string;
+  attachmentUrl: string;
+}

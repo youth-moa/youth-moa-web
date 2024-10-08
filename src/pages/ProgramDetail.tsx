@@ -2,41 +2,45 @@ import { useNavigate, useParams } from "react-router-dom";
 import Container from "../layouts/Container";
 import { Section } from "../layouts/Section";
 import { StatusBadge } from "../components/common/StatusBadge";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Button } from "../components/common/Button";
-
-const program = {
-  id: 1,
-  programName: "청년 리더십 프로그램",
-  programShortDesc: "청년 리더십을 키우는 프로그램입니다.",
-  applyStartDate: "2024-10-06T14:02:15.251Z",
-  applyEndDate: "2024-10-06T14:02:15.251Z",
-  programStartDate: "2024-10-06T14:02:15.251Z",
-  programEndDate: "2024-10-06T14:02:15.251Z",
-  capacity: 30,
-  applicationCount: 15,
-  contactInfo: "010-1234-5678",
-  programImageUrl: "https://example.com/program-image.png",
-  regionId: 1,
-  regionName: "남양주시",
-  centerId: 2,
-  centerName: "청년공감터",
-  status: "진행중",
-};
+import { useQuery } from "@tanstack/react-query";
+import { ProgramKey } from "../queries/keys";
+import { getProgramById } from "../api/program";
+import { dateFormat } from "../utils";
 
 export default function ProgramDetailPage() {
   const navigate = useNavigate();
 
   const { programId } = useParams();
 
-  // TODO: 프로그램 상세조회
+  const [currentProgramId, setCurrentProgramId] = useState(programId);
 
+  const { data: program, refetch } = useQuery({
+    queryKey: [ProgramKey.program, { id: programId }], // query key
+    // queryFn: () => getProgramById(Number(programId)), // API 호출 함수
+    queryFn: () => getProgramById(Number(1)), // API 호출 함수
+    // {
+    //   enabled: !!programId,
+    // }
+  });
+
+  useEffect(() => {
+    if (programId !== currentProgramId) {
+      setCurrentProgramId(programId);
+      refetch();
+    }
+  }, [programId, refetch]);
+
+  if (!program) return;
+
+  // TODO: api 수정 후 반영
   return (
     <Container>
       <Section>
         <section className="flex flex-col items-center h-full gap-6 md:gap-20 md:flex-row">
           <img
-            src={"https://example.com/program-image.png"}
+            src={program.programResponseDTO.programImageUrl}
             alt="thumbnail"
             width={269}
             className="object-contain h-[19rem] w-full md:h-full md:w-[17rem] rounded-lg"
@@ -45,9 +49,11 @@ export default function ProgramDetailPage() {
           <div className="flex-1 w-full">
             <section className="flex items-center justify-between w-full">
               <div className="flex flex-col w-full h-full gap-3">
-                <StatusBadge status={program.status} />
+                <StatusBadge status={program.programResponseDTO.status} />
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-lg">{program.programName}</h3>
+                  <h3 className="text-lg">
+                    {program.programResponseDTO.programName}
+                  </h3>
                   <p className="text-sm text-gray-001">
                     {program.programShortDesc}
                   </p>
@@ -76,8 +82,8 @@ export default function ProgramDetailPage() {
                 <h4 className="w-1/4 min-w-16">진행 기간</h4>
 
                 <p className="w-fit">
-                  {program.programStartDate.split("T")[0]} ~
-                  {program.programEndDate.split("T")[0]}
+                  {dateFormat(program.programResponseDTO.programStartDate)} ~
+                  {dateFormat(program.programResponseDTO.programEndDate)}
                 </p>
               </ListItem>
 
