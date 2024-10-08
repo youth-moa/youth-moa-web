@@ -125,7 +125,10 @@ export default function HomePage() {
                 key={program.id}
                 className="flex flex-col w-48 gap-2 mx-[14px]"
               >
-                <ProgramCard {...program} />
+                <ProgramCard
+                  {...program}
+                  onClick={() => navigate(`/program/detail/${program.id}`)}
+                />
 
                 <Button
                   style={{ height: 36 }}

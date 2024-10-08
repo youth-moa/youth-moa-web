@@ -1,12 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import {
-  IcoAlarm,
-  IcoDownload,
-  IcoHamburger,
-  IcoSetting,
-  Logo,
-  Symbol,
-} from "../assets";
+import { IcoDownload, IcoHamburger, IcoSetting, Logo, Symbol } from "../assets";
 import { useUser } from "../hooks/useUser";
 import { logout } from "../api/auth";
 import { useContext } from "react";
