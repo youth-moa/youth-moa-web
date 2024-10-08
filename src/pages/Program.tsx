@@ -289,7 +289,7 @@ export default function ProgramPage() {
                   <div className="h-10">
                     <Button
                       onClick={() => handleApplyProgram(program.id)}
-                      disabled={program.status === "마감"}
+                      disabled={program.status === "PENDING"}
                     >
                       <span className="flex items-center gap-2">
                         <IcoCheckOutlined stroke="white" width={16} />
