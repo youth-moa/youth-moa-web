@@ -1,4 +1,6 @@
 // import { IcoStarFilled, IcoStarOutlined } from "../../assets";
+import { PROGRAM_STATUS } from "../../constants/keys";
+import { dateFormat } from "../../utils";
 import { StatusBadge } from "./StatusBadge";
 
 interface PropsType {
@@ -6,7 +8,7 @@ interface PropsType {
   programStartDate: string;
   programEndDate: string;
   programImageUrl: string;
-  status?: "진행중" | "마감";
+  status?: "IN_PROGRESS" | "PENDING";
   isLiked?: boolean;
   onClick?: () => void;
 }
@@ -34,7 +36,7 @@ export function ProgramCard(props: PropsType) {
       <div className="flex flex-col gap-1">
         {status && (
           <div className="flex items-center justify-between">
-            <StatusBadge status={status} />
+            <StatusBadge status={PROGRAM_STATUS[status]} />
             {/* TODO: 즐겨찾기 고도화 */}
             {/* {isLiked ? (
               <button>
@@ -47,9 +49,11 @@ export function ProgramCard(props: PropsType) {
             )} */}
           </div>
         )}
-        <h4 className="text-base text-header-black">{programName}</h4>
+        <h4 className="overflow-hidden text-base text-header-black whitespace-nowrap text-ellipsis">
+          {programName}
+        </h4>
         <p className="text-sm text-gray-000">
-          {programStartDate} ~ {programEndDate}
+          {dateFormat(programStartDate)} ~ {dateFormat(programEndDate)}
         </p>
       </div>
     </section>
