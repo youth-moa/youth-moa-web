@@ -71,10 +71,10 @@ export default function ProgramPage() {
   );
   const [selectedCenters, setSelectedCenters] = useState<number[]>([]);
   const [sorted, setSorted] = useState("전체");
-  const [isShow, setIsShow] = useState({
-    region: true,
-    center: true,
-  });
+  // const [isShow, setIsShow] = useState({
+  //   region: true,
+  //   center: true,
+  // });
   const [filterModal, setFilterModal] = useState<ProgramFilterModalType>({
     isOpen: false,
     title: "",
@@ -170,9 +170,9 @@ export default function ProgramPage() {
             <div>
               <button
                 className="flex items-center justify-between w-full px-5 py-3 text-black border-2 rounded-lg border-gray-004"
-                onClick={() =>
-                  setIsShow((prev) => ({ ...prev, region: !prev.region }))
-                }
+                // onClick={() =>
+                //   setIsShow((prev) => ({ ...prev, region: !prev.region }))
+                // }
               >
                 <p className="text-xl font-semibold">지역</p>
                 <IcoArrowUp />
@@ -224,9 +224,9 @@ export default function ProgramPage() {
             <div>
               <button
                 className="flex items-center justify-between w-full px-5 py-3 text-black border-2 rounded-lg border-gray-004"
-                onClick={() =>
-                  setIsShow((prev) => ({ ...prev, center: !prev.center }))
-                }
+                // onClick={() =>
+                //   setIsShow((prev) => ({ ...prev, center: !prev.center }))
+                // }
               >
                 <p className="text-xl font-semibold">청년센터</p>
                 <IcoArrowUp />

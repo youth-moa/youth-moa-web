@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Container from "../layouts/Container";
 import { Section } from "../layouts/Section";
 import { StatusBadge } from "../components/common/StatusBadge";
-import { IcoShare } from "../assets";
 import { ReactNode } from "react";
 import { Button } from "../components/common/Button";
 
