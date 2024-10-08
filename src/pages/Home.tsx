@@ -48,7 +48,7 @@ export default function HomePage() {
     },
   });
 
-  // TODO: api 연동 및 useQuery 변경
+  // TODO: 배너 api 연동 및 useQuery 변경
   const { data: banners } = useQuery({
     queryKey: [CommonKey.list, { type: CommonKey.banner }],
     queryFn: async (): Promise<BannerListType[]> => {
@@ -59,12 +59,6 @@ export default function HomePage() {
       return data;
     },
   });
-
-  const handleApply = (id: string | number) => {
-    // TODO: 신청 페이지로 이동
-    console.log("신청", id);
-    navigate(`/program/detail/${id}`);
-  };
 
   return (
     <>
@@ -131,7 +125,7 @@ export default function HomePage() {
 
                 <Button
                   style={{ height: 36 }}
-                  onClick={() => handleApply(program.id)}
+                  onClick={() => navigate(`/program/apply/${program.id}`)}
                 >
                   <span className="flex items-center gap-2">
                     <IcoCheckOutlined className="w-4" stroke="white" />
