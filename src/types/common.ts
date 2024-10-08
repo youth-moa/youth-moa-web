@@ -1,6 +1,6 @@
 export interface SpaceListType {
-  id: string | number;
-  src: string;
+  spaceName: string;
+  fileUrl: string;
 }
 
 export interface BannerListType {

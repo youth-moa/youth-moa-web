@@ -18,6 +18,7 @@ import { IcoCheckOutlined, IcoNext } from "../assets";
 import type { BannerListType, SpaceListType } from "../types/common";
 import type { ProgramListType } from "../types/program";
 import { CommonKey, ProgramKey } from "../queries/keys";
+import { getSpageList } from "../api/common";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -40,10 +41,8 @@ export default function HomePage() {
   // TODO: api 연동 및 useQuery 변경
   const { data: spaces } = useQuery({
     queryKey: [CommonKey.list, { type: CommonKey.space }],
-    queryFn: async (): Promise<SpaceListType[]> => {
-      const data = await fetch("dummy-data/space.json")
-        .then((res) => res.json())
-        .then((data) => data.spaces);
+    queryFn: async () => {
+      const data = await getSpageList();
 
       return data;
     },
@@ -182,14 +181,15 @@ export default function HomePage() {
             modules={[Navigation]}
             onBeforeInit={(swipper) => setSpaceSwiper(swipper)}
           >
-            {spaces?.map((space) => (
+            {spaces?.map((space, index) => (
               <SwiperSlide
-                key={space.id}
+                key={index}
                 className="flex flex-col w-64 gap-2 mx-[14px]"
               >
                 <img
                   className="h-[184px] object-cover rounded-lg"
-                  src={space.src}
+                  src={space.fileUrl}
+                  alt={space.spaceName}
                 />
               </SwiperSlide>
             ))}
