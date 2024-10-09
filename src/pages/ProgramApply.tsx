@@ -79,22 +79,22 @@ export default function ProgramApplyPage() {
         <Section>
           <SubTitle title="프로그램 정보" />
 
+          <div className="my-5" />
+
           <section className="flex gap-6">
             <img
               src={program.programResponseDTO.programImageUrl}
               alt="thumbnail"
-              width={193}
-              height={184}
-              className="object-contain rounded-lg"
+              className="object-cover w-48 rounded-lg h-[11.5rem]"
             />
 
             <div className="flex flex-col h-full gap-3">
               <StatusBadge status={program.programResponseDTO.status} />
               <div className="flex flex-col gap-1">
-                <h3 className="text-lg">
+                <h3 className="text-lg font-medium text-black">
                   {program.programResponseDTO.programName}
                 </h3>
-                <p className="text-sm text-gray-001">
+                <p className="text-sm font-normal text-gray-001">
                   {dateFormat(program.programResponseDTO.programStartDate)} ~{" "}
                   {dateFormat(program.programResponseDTO.programEndDate)}
                 </p>
@@ -103,10 +103,9 @@ export default function ProgramApplyPage() {
           </section>
         </Section>
 
-        {/* TODO: 고도화 */}
-        {/* <Section>
+        <Section>
           <SubTitle title="강좌 선택" />
-        </Section> */}
+        </Section>
 
         <Section>
           <SubTitle title="신청자 정보" />
@@ -225,12 +224,18 @@ export default function ProgramApplyPage() {
               ) : (
                 <IcoCheckOutlined width={28} stroke="rgba(144, 144, 146, 1)" />
               )}
-              <p className="text-gray-002">동의</p>
+              <p
+                className={`font-medium ${
+                  form.personalInfoAgree ? "text-blue" : "text-gray-002"
+                }`}
+              >
+                동의
+              </p>
             </button>
           </section>
 
           <section className="px-8 py-6 rounded-lg bg-gray-005">
-            <h3 className="text-sm font-semibold">개인정보수집 및 초상 이용</h3>
+            <h3 className="text-sm font-bold">개인정보수집 및 초상 이용</h3>
 
             <br />
 

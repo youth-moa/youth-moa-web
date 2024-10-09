@@ -85,10 +85,15 @@ export default function HomePage() {
       </section>
 
       <section className="w-full max-w-[60rem] px-5 py-16 m-auto">
-        <SubTitle text="프로그램" />
+        <SubTitle
+          text="프로그램"
+          className="font-bold text-black font-gmarket-sans"
+        />
 
         <div className="flex items-center justify-between mt-2 mb-11">
-          <p>진행중인 프로그램을 소개해드려요.</p>
+          <p className="font-normal text-gray-000">
+            진행중인 프로그램을 소개해드려요.
+          </p>
 
           <button
             className="flex items-center gap-2 text-sm font-semibold text-gray-000"
@@ -148,14 +153,19 @@ export default function HomePage() {
       </section>
 
       {/* <section className="py-16 bg-blue ">
-        <SubTitle text="공지사항" className="text-white" />
+        <SubTitle text="공지사항" className="font-bold text-white font-gmarket-sans" />
       </section> */}
 
       <section className="w-full max-w-[60rem] px-5 py-16 m-auto">
-        <SubTitle text="공간안내" />
+        <SubTitle
+          text="공간안내"
+          className="font-bold text-black font-gmarket-sans"
+        />
 
         <div className="flex items-center justify-between mt-2 mb-11">
-          <p>청년센터 공간을 소개해드려요.</p>
+          <p className="font-normal text-gray-000">
+            청년센터 공간을 소개해드려요.
+          </p>
 
           {/* <button
             className="flex items-center gap-2 text-sm font-semibold text-gray-000"

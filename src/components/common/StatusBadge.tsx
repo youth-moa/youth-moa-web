@@ -9,7 +9,7 @@ export function StatusBadge(props: PropsType) {
 
   return (
     <span
-      className={`w-fit h-fit text-white rounded-[20px] text-xs font-semibold py-[2px] px-2 ${
+      className={`w-fit h-fit text-white rounded-[20px] text-xs font-bold py-[2px] px-2 ${
         status === "progress" ? "bg-green" : "bg-gray-001"
       }`}
     >

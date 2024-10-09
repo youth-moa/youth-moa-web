@@ -158,7 +158,7 @@ export default function ProgramPage() {
           <div className="hidden min-w-64 md:inline-block" />
 
           <div className="flex flex-col items-start justify-between w-full gap-3 md:items-center md:flex-row">
-            <span>
+            <span className="font-medium text-header-black">
               전체 <strong className="text-blue">{totalCounts}</strong> 건
             </span>
 
@@ -186,13 +186,13 @@ export default function ProgramPage() {
         <section className="flex justify-between max-w-[60rem] w-full gap-10 px-5">
           <section className="flex-col hidden gap-3 md:flex min-w-64">
             <div className="flex items-center justify-between px-5 py-3 text-white rounded-lg bg-blue">
-              <p className="text-xl font-semibold">필터</p>
+              <p className="text-xl font-bold">필터</p>
               <button
                 className="flex items-center gap-1"
                 onClick={handleClickReset}
               >
                 <IcoRefresh fill="white" />
-                <span className="text-sm">초기화</span>
+                <span className="text-sm font-semibold">초기화</span>
               </button>
             </div>
 
@@ -203,7 +203,7 @@ export default function ProgramPage() {
                 //   setIsShow((prev) => ({ ...prev, region: !prev.region }))
                 // }
               >
-                <p className="text-xl font-semibold">지역</p>
+                <p className="text-xl font-bold text-title">지역</p>
                 <IcoArrowUp />
               </button>
 
@@ -257,7 +257,7 @@ export default function ProgramPage() {
                 //   setIsShow((prev) => ({ ...prev, center: !prev.center }))
                 // }
               >
-                <p className="text-xl font-semibold">청년센터</p>
+                <p className="text-xl font-bold text-title">청년센터</p>
                 <IcoArrowUp />
               </button>
 
@@ -322,7 +322,7 @@ export default function ProgramPage() {
                       onClick={() => handleApplyProgram(program.programId)}
                       disabled={program.status === "closed"}
                     >
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 font-semibold">
                         <IcoCheckOutlined stroke="white" width={16} />
                         신청하기
                       </span>
@@ -359,7 +359,7 @@ function Badge(props: PropsType) {
 
   return (
     <button
-      className={`rounded-2xl text-xs px-2.5 py-1 border ${
+      className={`rounded-2xl text-xs px-2.5 py-1 border font-semibold ${
         isSelected
           ? "bg-blue text-white border-blue"
           : "bg-gray-005 text-gray-002 border-gray-003"
@@ -396,7 +396,7 @@ function Item(props: ItemPropsType) {
           <IcoCheckOutlined stroke="rgba(111, 111, 111, 1)" width={14} />
         )}
       </span>
-      <p>{name}</p>
+      <p className="font-medium text-text">{name}</p>
       <span className="font-semibold text-blue">{count}</span>
     </button>
   );

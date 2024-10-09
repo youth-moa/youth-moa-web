@@ -50,10 +50,10 @@ export function ProgramCard(props: PropsType) {
             )} */}
           </div>
         )}
-        <h4 className="overflow-hidden text-base text-header-black whitespace-nowrap text-ellipsis">
+        <h4 className="overflow-hidden text-base font-medium text-header-black whitespace-nowrap text-ellipsis">
           {programName}
         </h4>
-        <p className="text-sm text-gray-000">
+        <p className="text-sm font-normal text-gray-000">
           {dateFormat(programStartDate)} ~ {dateFormat(programEndDate)}
         </p>
       </div>
