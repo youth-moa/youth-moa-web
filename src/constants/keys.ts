@@ -4,8 +4,8 @@ export const BUTTON_TYPE = {
 } as const;
 
 export const PROGRAM_STATUS = {
-  IN_PROGRESS: "진행중",
-  CLOSED: "마감",
+  progress: "진행중",
+  closed: "마감",
 } as const;
 
 export const PROGRAM_SORT = {

@@ -4,10 +4,10 @@ export interface CommonResponse {
 }
 
 export interface ProgramListType {
-  id: number;
+  programId: number;
   programImageUrl: string;
   programName: string;
-  status: "IN_PROGRESS" | "CLOSED";
+  status: "progress" | "closed";
   programStartDate: string;
   programEndDate: string;
 }
@@ -52,10 +52,10 @@ export interface ProgramListResponse {
   totalElements: number;
   size: number;
   content: {
-    id: number;
+    programId: number;
     programImageUrl: string;
     programName: string;
-    status: "IN_PROGRESS" | "CLOSED";
+    status: "progress" | "closed";
     programStartDate: string;
     programEndDate: string;
   }[];
@@ -103,9 +103,10 @@ export interface CenterListResponse {
 export interface ProgramDetailType {
   id: number;
   programResponseDTO: {
+    programId: number;
     programImageUrl: string;
     programName: string;
-    status: "IN_PROGRESS" | "CLOSED";
+    status: "progress" | "closed";
     programStartDate: string;
     programEndDate: string;
   };
@@ -116,12 +117,13 @@ export interface ProgramDetailType {
   applicationCount: number;
   contactInfo: string;
   programImageUrl: string;
-  programDetail: string;
+  programDetailImageUrl: string | null;
+  programDetail: string | null;
   regionId: number;
   regionName: string;
   centerId: number;
   centerName: string;
-  attachmentUrl: string;
+  attachmentUrl: string[];
 }
 
 export interface ProgramApplicationFormType {

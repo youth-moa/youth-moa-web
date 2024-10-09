@@ -7,7 +7,7 @@ interface PropsType {
   programStartDate: string;
   programEndDate: string;
   programImageUrl: string;
-  status: "IN_PROGRESS" | "CLOSED";
+  status: "progress" | "closed";
   isLiked?: boolean;
   onClick?: () => void;
 }

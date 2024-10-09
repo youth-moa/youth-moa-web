@@ -18,9 +18,8 @@ export default function ProgramDetailPage() {
   const [currentProgramId, setCurrentProgramId] = useState(programId);
 
   const { data: program, refetch } = useQuery({
-    queryKey: [ProgramKey.program, { id: programId }], // query key
-    // queryFn: () => getProgramById(Number(programId)), // API 호출 함수
-    queryFn: () => getProgramById(Number(1)), // API 호출 함수
+    queryKey: [ProgramKey.program, { id: programId }],
+    queryFn: () => getProgramById(Number(programId)),
     // {
     //   enabled: !!programId,
     // }
@@ -39,11 +38,10 @@ export default function ProgramDetailPage() {
   return (
     <Container hasBgColor>
       <Section>
-        <section className="flex flex-col items-center h-full gap-6 md:gap-20 md:flex-row">
+        <div className="flex flex-col items-center h-full gap-6 md:gap-20 md:flex-row">
           <img
             src={program.programResponseDTO.programImageUrl}
             alt="thumbnail"
-            width={269}
             className="object-contain h-[19rem] w-full md:h-full md:w-[17rem] rounded-lg"
           />
 
@@ -99,7 +97,6 @@ export default function ProgramDetailPage() {
                   진행 장소
                 </h4>
                 <p className="text-base font-normal w-fit text-gray-000">
-                  {" "}
                   {program.centerName}
                 </p>
               </ListItem>
@@ -117,13 +114,28 @@ export default function ProgramDetailPage() {
                 <h4 className="w-1/4 font-medium text-black min-w-16">
                   첨부파일
                 </h4>
-                <p className="text-base font-normal w-fit text-gray-000"> //</p>
+
+                <div className="flex flex-col">
+                  {program.attachmentUrl.map((url, index) => (
+                    <a
+                      key={index}
+                      href={url}
+                      className="text-base font-normal cursor-pointer w-fit text-gray-000"
+                      download
+                    >
+                      {url}
+                    </a>
+                  ))}
+                </div>
               </ListItem>
             </ul>
 
             <section className="flex items-center h-10 gap-3">
               {/* <button>즐겨찾기 아이콘</button> */}
-              <Button onClick={() => navigate(`/program/apply/${programId}`)}>
+              <Button
+                onClick={() => navigate(`/program/apply/${programId}`)}
+                disabled={program.programResponseDTO.status === "closed"}
+              >
                 <span className="flex items-center gap-2">
                   <IcoCheckOutlined stroke="white" width={16} />
                   신청하기
@@ -131,16 +143,24 @@ export default function ProgramDetailPage() {
               </Button>
             </section>
           </div>
-        </section>
+        </div>
       </Section>
 
       <div className="my-3" />
 
-      <Section>상세</Section>
+      <Section>
+        <div className="flex flex-col gap-5">
+          {program.programDetailImageUrl && (
+            <img src={program.programDetailImageUrl} className="w-full" />
+          )}
+
+          {program.programDetail}
+        </div>
+      </Section>
     </Container>
   );
 }
 
 function ListItem({ children }: { children: ReactNode }) {
-  return <li className="flex items-center justify-start w-full">{children}</li>;
+  return <li className="flex items-start justify-start w-full">{children}</li>;
 }

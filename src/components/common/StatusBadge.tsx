@@ -1,7 +1,7 @@
 import { PROGRAM_STATUS } from "../../constants/keys";
 
 interface PropsType {
-  status: "IN_PROGRESS" | "CLOSED";
+  status: "progress" | "closed";
 }
 
 export function StatusBadge(props: PropsType) {
@@ -10,7 +10,7 @@ export function StatusBadge(props: PropsType) {
   return (
     <span
       className={`w-fit h-fit text-white rounded-[20px] text-xs font-semibold py-[2px] px-2 ${
-        status === "IN_PROGRESS" ? "bg-green" : "bg-gray-001"
+        status === "progress" ? "bg-green" : "bg-gray-001"
       }`}
     >
       {PROGRAM_STATUS[status]}

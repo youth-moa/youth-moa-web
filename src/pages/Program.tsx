@@ -310,15 +310,17 @@ export default function ProgramPage() {
               {programs?.map((program) => (
                 <div className="flex flex-col gap-2">
                   <ProgramCard
-                    key={program.id}
+                    key={program.programId}
                     {...program}
-                    onClick={() => navigate(`/program/detail/${program.id}`)}
+                    onClick={() =>
+                      navigate(`/program/detail/${program.programId}`)
+                    }
                   />
 
                   <div className="h-10">
                     <Button
-                      onClick={() => handleApplyProgram(program.id)}
-                      disabled={program.status === "CLOSED"}
+                      onClick={() => handleApplyProgram(program.programId)}
+                      disabled={program.status === "closed"}
                     >
                       <span className="flex items-center gap-2">
                         <IcoCheckOutlined stroke="white" width={16} />

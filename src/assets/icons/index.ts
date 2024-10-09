@@ -3,6 +3,7 @@ import IcoAlarm from "./alarm.svg?react";
 import IcoArrowUp from "./arrow-up.svg?react";
 import IcoCancel from "./cancel.svg?react";
 import IcoCardSearchOutlined from "./card-search-outlined.svg?react";
+import IcoCheckFilledWhite from "./check-filled-white.svg?react";
 import IcoCheckFilled from "./check-filled.svg?react";
 import IcoCheckOutlined from "./check-outlined.svg?react";
 import IcoDownload from "./download.svg?react";
@@ -26,6 +27,7 @@ export {
   IcoArrowUp,
   IcoCancel,
   IcoCardSearchOutlined,
+  IcoCheckFilledWhite,
   IcoCheckFilled,
   IcoCheckOutlined,
   IcoErrorCircle,

@@ -16,7 +16,7 @@ import { DatePicker } from "../components/common/DatePicker";
 import { AddressModal } from "../components/home/AddressModal";
 
 import {
-  IcoCheckFilled,
+  IcoCheckFilledWhite,
   IcoCheckOutlined,
   IcoNext,
   IcoSearch,
@@ -227,7 +227,7 @@ export default function SignUpPage() {
               >
                 <span className="flex items-center justify-center gap-2">
                   {isCheckEmail ? (
-                    <IcoCheckFilled width={18} height={18} fill="white" />
+                    <IcoCheckFilledWhite width={18} height={18} />
                   ) : (
                     <IcoCheckOutlined stroke="#303CE9" />
                   )}
