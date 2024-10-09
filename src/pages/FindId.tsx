@@ -5,7 +5,7 @@ import Container from "../layouts/Container";
 
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
-import { IcoCardSearchOutlined, IcoSetting, IcoUser } from "../assets";
+import { IcoCardSearchOutlined, IcoAccount, IcoUser } from "../assets";
 import { Label } from "../components/common/Label";
 import { Button } from "../components/common/Button";
 import { BUTTON_TYPE } from "../constants/keys";
@@ -174,7 +174,7 @@ export default function FindIdPage() {
             </div>
 
             <div className="flex items-center px-8 py-6 rounded-md bg-gray-005 text-start md:gap-[14px]">
-              <IcoSetting className="w-[39px] h-[39px] m-2" />
+              <IcoAccount className="w-[39px] h-[39px] m-2" />
 
               <div>
                 <p className="text-lg font-semibold">{userInfo.userEmail}</p>

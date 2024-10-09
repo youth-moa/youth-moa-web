@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { IcoDownload, IcoHamburger, IcoSetting, Logo, Symbol } from "../assets";
+import { IcoDownload, IcoHamburger, IcoAccount, Logo, Symbol } from "../assets";
 import { useUser } from "../hooks/useUser";
 import { logout } from "../api/auth";
 import { useContext } from "react";
@@ -68,8 +68,8 @@ export default function Header() {
           </Link>
         </li> */}
         <li className="hidden md:inline-block">
-          <Link to="/">
-            <IcoSetting />
+          <Link to="/my?type=program">
+            <IcoAccount />
           </Link>
         </li>
         <li

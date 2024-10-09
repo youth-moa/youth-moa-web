@@ -134,3 +134,13 @@ export interface ProgramApplicationFormType {
   fileUrl: string;
   personalInfoAgree: boolean;
 }
+
+export interface ProgramApplicationType {
+  programId: number;
+  programName: string;
+  applicationDate: string;
+  status: "pending" | "approved" | "rejected" | "canceled";
+  programStartDate: string;
+  programEndDate: string;
+  programImageUrl: string;
+}

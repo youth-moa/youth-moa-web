@@ -308,9 +308,8 @@ export default function ProgramPage() {
 
             <div className="flex flex-wrap items-center gap-5">
               {programs?.map((program) => (
-                <div className="flex flex-col gap-2">
+                <div key={program.programId} className="flex flex-col gap-2">
                   <ProgramCard
-                    key={program.programId}
                     {...program}
                     onClick={() =>
                       navigate(`/program/detail/${program.programId}`)
