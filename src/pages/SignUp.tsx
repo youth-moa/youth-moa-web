@@ -16,7 +16,7 @@ import { DatePicker } from "../components/common/DatePicker";
 import { AddressModal } from "../components/home/AddressModal";
 
 import {
-  IcoCheckFilled,
+  IcoCheckFilledWhite,
   IcoCheckOutlined,
   IcoNext,
   IcoSearch,
@@ -227,7 +227,7 @@ export default function SignUpPage() {
               >
                 <span className="flex items-center justify-center gap-2">
                   {isCheckEmail ? (
-                    <IcoCheckFilled width={18} height={18} fill="white" />
+                    <IcoCheckFilledWhite width={18} height={18} />
                   ) : (
                     <IcoCheckOutlined stroke="#303CE9" />
                   )}
@@ -403,7 +403,7 @@ export default function SignUpPage() {
                 }
               >
                 <div className="flex items-center justify-between w-full">
-                  <p>회원가입약관</p>
+                  <p className="font-medium">회원가입약관</p>
                   <button className="flex items-center gap-2 text-blue">
                     약관보기
                     <IcoNext fill="#0264FB" />
@@ -420,7 +420,7 @@ export default function SignUpPage() {
                 }
               >
                 <div className="flex items-center justify-between w-full">
-                  <p>개인정보처리방침안내</p>
+                  <p className="font-medium">개인정보처리방침안내</p>
                   <button className="flex items-center gap-2 text-blue">
                     약관보기
                     <IcoNext fill="#0264FB" />

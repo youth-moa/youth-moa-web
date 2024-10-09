@@ -49,7 +49,7 @@ export default function Header() {
         <Symbol height={25} className="md:hidden" />
       </Link>
 
-      <ul className="hidden text-xl font-semibold md:flex gap-x-24">
+      <ul className="hidden text-xl font-semibold md:flex gap-x-24 text-header-black">
         <li>
           <Link to="/">홈</Link>
         </li>

@@ -29,6 +29,12 @@ api.interceptors.response.use((response) => {
   //   // 토근 재발급
   // }
 
+  if (response.data.status === 403) {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    location.href = "/login";
+  }
+
   return response.data;
 });
 

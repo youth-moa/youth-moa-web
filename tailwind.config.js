@@ -7,6 +7,8 @@ export default {
         header: "0px 3px 4px 0px rgba(0, 0, 0, 0.12);",
       },
       colors: {
+        title: "rgba(64, 65, 75, 1)",
+        text: "rgba(77, 75, 75, 1)",
         blue: "rgba(63, 48, 233, 1)",
         "border-gray": "rgba(217, 217, 217, 1)",
         "header-black": "rgba(50, 50, 50, 1)",
@@ -20,6 +22,9 @@ export default {
         red: "rgba(254, 38, 38, 1)",
       },
       boxShadow: { base: "0px 0px 4px 0px rgba(0, 0, 0, 0.20);" },
+      fontFamily: {
+        "gmarket-sans": ["GmarketSans"],
+      },
     },
   },
   plugins: [],
