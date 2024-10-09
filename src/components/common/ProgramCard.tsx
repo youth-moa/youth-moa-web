@@ -25,18 +25,20 @@ export function ProgramCard(props: PropsType) {
   } = props;
   return (
     <section
-      className={`flex flex-col gap-3 ${onClick ? "cursor-pointer" : ""}`}
+      className={`flex flex-col gap-3 w-[12rem] ${
+        onClick ? "cursor-pointer" : ""
+      }`}
       onClick={onClick}
     >
       <img
         src={programImageUrl}
-        className="h-[184px] object-cover rounded-lg"
+        className="h-[11.5rem] object-cover rounded-lg"
       />
 
       <div className="flex flex-col gap-1">
         {status && (
           <div className="flex items-center justify-between">
-            <StatusBadge status={PROGRAM_STATUS[status]} />
+            <StatusBadge status={status} />
             {/* TODO: 즐겨찾기 고도화 */}
             {/* {isLiked ? (
               <button>

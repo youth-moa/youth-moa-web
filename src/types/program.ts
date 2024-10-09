@@ -1,3 +1,8 @@
+export interface CommonResponse {
+  success: boolean;
+  message: string;
+}
+
 export interface ProgramListType {
   id: number;
   programImageUrl: string;
@@ -35,8 +40,8 @@ export interface ProgramType {
 }
 
 export interface ProgramListRequestBody {
-  regionId?: number;
-  centerId?: number;
+  regionId?: number[];
+  centerId?: number[];
   sort?: string;
   page?: number;
   size?: number;
@@ -117,4 +122,13 @@ export interface ProgramDetailType {
   centerId: number;
   centerName: string;
   attachmentUrl: string;
+}
+
+export interface ProgramApplicationFormType {
+  programId: number;
+  selectedCourse: string;
+  subjectiveAnswer: string;
+  objectiveAnswer: string;
+  fileUrl: string;
+  personalInfoAgree: boolean;
 }

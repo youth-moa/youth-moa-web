@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
@@ -61,31 +61,52 @@ export default function ProgramPage() {
 
       return data;
     },
+    initialData: [],
   });
 
-  const { data: centers } = useQuery({
+  const { data: centers, refetch: centersRefetch } = useQuery({
     queryKey: [CommonKey.list, { type: ProgramKey.center }],
     queryFn: async () => {
       const data = await getCenterList({ regionId: selectedRegions });
 
       return data;
     },
+    initialData: [],
   });
 
-  // TODO: mutation 추가
-  const { data: programs } = useQuery({
-    queryKey: [CommonKey.list, { type: ProgramKey.program }],
+  const { data: programs, refetch: programsRefetch } = useQuery({
+    queryKey: [
+      CommonKey.list,
+      { type: ProgramKey.program, page: page.current },
+    ],
     queryFn: async () => {
-      const data = await getProgramList();
+      const params = {
+        regionId: selectedRegions,
+        centerId: selectedCenters,
+        sort: sorted,
+        page: page.current + 1,
+      };
+
+      const data = await getProgramList({ params });
+
       setTotalCounts(data.totalElements);
-      setPage({ total: data.totalPages, current: data.pageable.pageNumber });
+      setPage((prev) => ({ ...prev, total: data.totalPages }));
 
       return data.content;
     },
+    initialData: [],
   });
 
-  const handleClick = (filter: string) => {
-    setSorted(filter);
+  useEffect(() => {
+    centersRefetch();
+  }, [selectedRegions.length]);
+
+  useEffect(() => {
+    programsRefetch();
+  }, [selectedRegions.length, selectedCenters.length, sorted, page.current]);
+
+  const handleClick = (sort: string) => {
+    setSorted(sort);
   };
 
   const handleSelectRegion = (regionId: number) => {
@@ -95,6 +116,7 @@ export default function ProgramPage() {
     }
 
     setSelectedRegions((prev) => [...prev, regionId]);
+    setSelectedCenters([]);
   };
 
   const handleSelectCenter = (id: number) => {
@@ -120,6 +142,11 @@ export default function ProgramPage() {
     });
   };
 
+  const handleClickReset = () => {
+    setSelectedCenters([]);
+    setSelectedRegions([]);
+  };
+
   return (
     <>
       <Container>
@@ -127,7 +154,7 @@ export default function ProgramPage() {
 
         <div className="my-5" />
 
-        <section className="flex w-full max-w-[57.5rem] gap-10 px-5">
+        <section className="flex w-full max-w-[60rem] gap-10 px-5">
           <div className="hidden min-w-64 md:inline-block" />
 
           <div className="flex flex-col items-start justify-between w-full gap-3 md:items-center md:flex-row">
@@ -156,11 +183,14 @@ export default function ProgramPage() {
 
         <div className="my-1" />
 
-        <section className="flex justify-between max-w-[57.5rem] w-full gap-10 px-5">
+        <section className="flex justify-between max-w-[60rem] w-full gap-10 px-5">
           <section className="flex-col hidden gap-3 md:flex min-w-64">
             <div className="flex items-center justify-between px-5 py-3 text-white rounded-lg bg-blue">
               <p className="text-xl font-semibold">필터</p>
-              <button className="flex items-center gap-1">
+              <button
+                className="flex items-center gap-1"
+                onClick={handleClickReset}
+              >
                 <IcoRefresh fill="white" />
                 <span className="text-sm">초기화</span>
               </button>
@@ -177,7 +207,7 @@ export default function ProgramPage() {
                 <IcoArrowUp />
               </button>
 
-              <div className="px-5 py-3 rounded-b-lg bg-gray-005">
+              <div className="flex flex-col gap-1 px-5 py-3 rounded-b-lg bg-gray-005">
                 {regions?.slice(0, MAX_NUM).map((region) => (
                   <Item
                     key={region.id}
@@ -190,7 +220,7 @@ export default function ProgramPage() {
 
                 {regions && regions.length > MAX_NUM && (
                   <>
-                    <div className="my-3" />
+                    <div className="my-2" />
 
                     <div className="flex justify-end">
                       <button
@@ -231,7 +261,7 @@ export default function ProgramPage() {
                 <IcoArrowUp />
               </button>
 
-              <div className="px-5 py-3 rounded-b-lg bg-gray-005">
+              <div className="flex flex-col gap-1 px-5 py-3 rounded-b-lg bg-gray-005">
                 {centers?.slice(0, MAX_NUM).map((center) => (
                   <Item
                     key={center.id}
@@ -243,7 +273,7 @@ export default function ProgramPage() {
 
                 {centers && centers.length > MAX_NUM && (
                   <>
-                    <div className="my-3" />
+                    <div className="my-2" />
 
                     <div className="flex justify-end">
                       <button
@@ -357,7 +387,7 @@ function Item(props: ItemPropsType) {
         {isChecked ? (
           <IcoCheckFilled
             fill="rgba(63, 48, 233, 1)"
-            stroke="white"
+            stroke="rgba(63, 48, 233, 1)"
             width={14}
           />
         ) : (

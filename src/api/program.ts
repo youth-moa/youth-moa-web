@@ -1,6 +1,8 @@
 import {
   CenterListRequestBody,
   CenterListResponse,
+  CommonResponse,
+  ProgramApplicationFormType,
   ProgramDetailType,
   ProgramListRequestBody,
   ProgramListResponse,
@@ -32,4 +34,11 @@ export function getCenterList({
 /** 프로그램 상세조회 */
 export function getProgramById(programId: number): Promise<ProgramDetailType> {
   return api.get(`/api/programs?programId=${programId}`);
+}
+
+/** 프로그램 신청 */
+export function postProgram(
+  body: ProgramApplicationFormType
+): Promise<CommonResponse> {
+  return api.post("/api/applications", body);
 }
