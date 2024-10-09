@@ -13,6 +13,7 @@ import NoticePage from "../pages/Notice";
 import FindAccountPage from "../pages/FindAccount";
 import ProgramDetailPage from "../pages/ProgramDetail";
 import ProgramApplyPage from "../pages/ProgramApply";
+import MyPage from "../pages/My";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ export const router = createBrowserRouter(
       />
       <Route path="/program/apply/:programId" element={<ProgramApplyPage />} />
       <Route path="/notice" element={<NoticePage />} />
+      <Route path="/my" element={<MyPage />} />
     </Route>
   )
 );

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { IcoDownload, IcoHamburger, IcoSetting, Logo, Symbol } from "../assets";
+import { IcoDownload, IcoHamburger, IcoAccount, Logo, Symbol } from "../assets";
 import { useUser } from "../hooks/useUser";
 import { logout } from "../api/auth";
 import { useContext } from "react";
@@ -49,7 +49,7 @@ export default function Header() {
         <Symbol height={25} className="md:hidden" />
       </Link>
 
-      <ul className="hidden text-xl font-semibold md:flex gap-x-24">
+      <ul className="hidden text-xl font-semibold md:flex gap-x-24 text-header-black">
         <li>
           <Link to="/">홈</Link>
         </li>
@@ -68,8 +68,8 @@ export default function Header() {
           </Link>
         </li> */}
         <li className="hidden md:inline-block">
-          <Link to="/">
-            <IcoSetting />
+          <Link to="/my?type=program">
+            <IcoAccount />
           </Link>
         </li>
         <li
