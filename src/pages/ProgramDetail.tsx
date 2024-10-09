@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ProgramKey } from "../queries/keys";
 import { getProgramById } from "../api/program";
 import { dateFormat } from "../utils";
+import { IcoCheckOutlined } from "../assets";
 
 export default function ProgramDetailPage() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ export default function ProgramDetailPage() {
 
   // TODO: api 수정 후 반영
   return (
-    <Container>
+    <Container hasBgColor>
       <Section>
         <section className="flex flex-col items-center h-full gap-6 md:gap-20 md:flex-row">
           <img
@@ -46,15 +47,17 @@ export default function ProgramDetailPage() {
             className="object-contain h-[19rem] w-full md:h-full md:w-[17rem] rounded-lg"
           />
 
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full overflow-hidden">
             <section className="flex items-center justify-between w-full">
               <div className="flex flex-col w-full h-full gap-3">
                 <StatusBadge status={program.programResponseDTO.status} />
+
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-lg">
+                  <h3 className="overflow-hidden text-lg font-medium text-ellipsis whitespace-nowrap">
                     {program.programResponseDTO.programName}
                   </h3>
-                  <p className="text-sm text-gray-001">
+
+                  <p className="overflow-hidden text-sm text-gray-001 text-ellipsis whitespace-nowrap">
                     {program.programShortDesc}
                   </p>
                 </div>
@@ -70,43 +73,61 @@ export default function ProgramDetailPage() {
 
             <ul className="flex flex-col gap-4 mb-11">
               <ListItem>
-                <h4 className="w-1/4 min-w-16">신청 기간</h4>
+                <h4 className="w-1/4 font-medium text-black min-w-16">
+                  신청 기간
+                </h4>
 
-                <p className="w-fit">
+                <p className="overflow-hidden text-base font-normal w-fit text-gray-000 whitespace-nowrap text-ellipsis">
                   {program.applyStartDate.split("T")[0]} ~
                   {program.applyEndDate.split("T")[0]}
                 </p>
               </ListItem>
 
               <ListItem>
-                <h4 className="w-1/4 min-w-16">진행 기간</h4>
+                <h4 className="w-1/4 font-medium text-black min-w-16">
+                  진행 기간
+                </h4>
 
-                <p className="w-fit">
+                <p className="overflow-hidden text-base font-normal w-fit text-gray-000 whitespace-nowrap text-ellipsis">
                   {dateFormat(program.programResponseDTO.programStartDate)} ~
                   {dateFormat(program.programResponseDTO.programEndDate)}
                 </p>
               </ListItem>
 
               <ListItem>
-                <h4 className="w-1/4 min-w-16">진행 장소</h4>
-                <p className="w-fit"> {program.centerName}</p>
+                <h4 className="w-1/4 font-medium text-black min-w-16">
+                  진행 장소
+                </h4>
+                <p className="text-base font-normal w-fit text-gray-000">
+                  {" "}
+                  {program.centerName}
+                </p>
               </ListItem>
 
               <ListItem>
-                <h4 className="w-1/4 min-w-16">모집인원</h4>
-                <p className="w-fit">{program.applicationCount}명</p>
+                <h4 className="w-1/4 font-medium text-black min-w-16">
+                  모집인원
+                </h4>
+                <p className="text-base font-normal w-fit text-gray-000">
+                  {program.capacity}명
+                </p>
               </ListItem>
 
               <ListItem>
-                <h4 className="w-1/4 min-w-16">첨부파일</h4>
-                <p className="w-fit"> //</p>
+                <h4 className="w-1/4 font-medium text-black min-w-16">
+                  첨부파일
+                </h4>
+                <p className="text-base font-normal w-fit text-gray-000"> //</p>
               </ListItem>
             </ul>
 
             <section className="flex items-center h-10 gap-3">
               {/* <button>즐겨찾기 아이콘</button> */}
               <Button onClick={() => navigate(`/program/apply/${programId}`)}>
-                <div>신청하기</div>
+                <span className="flex items-center gap-2">
+                  <IcoCheckOutlined stroke="white" width={16} />
+                  신청하기
+                </span>
               </Button>
             </section>
           </div>

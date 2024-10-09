@@ -70,7 +70,7 @@ export default function ProgramApplyPage() {
   if (!program) return <></>;
 
   return (
-    <Container>
+    <Container hasBgColor>
       <Title title="프로그램 신청" />
 
       <div className="my-5" />

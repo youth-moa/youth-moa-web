@@ -1,5 +1,4 @@
 // import { IcoStarFilled, IcoStarOutlined } from "../../assets";
-import { PROGRAM_STATUS } from "../../constants/keys";
 import { dateFormat } from "../../utils";
 import { StatusBadge } from "./StatusBadge";
 
