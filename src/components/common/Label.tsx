@@ -8,7 +8,7 @@ interface PropsType extends ComponentProps<"span"> {
 export function Label({ label, required = false, className }: PropsType) {
   return (
     <span
-      className={`${
+      className={`text-gray-000 font-medium ${
         required && "after:content-['*'] after:text-red after:ml-1"
       } ${className}`}
     >

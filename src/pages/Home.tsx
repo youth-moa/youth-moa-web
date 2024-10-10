@@ -84,11 +84,16 @@ export default function HomePage() {
         </SwiperContainer>
       </section>
 
-      <section className="w-full max-w-[57.5rem] px-5 py-16 m-auto">
-        <SubTitle text="프로그램" />
+      <section className="w-full max-w-[60rem] px-5 py-16 m-auto">
+        <SubTitle
+          text="프로그램"
+          className="font-bold text-black font-gmarket-sans"
+        />
 
         <div className="flex items-center justify-between mt-2 mb-11">
-          <p>진행중인 프로그램을 소개해드려요.</p>
+          <p className="font-normal text-gray-000">
+            진행중인 프로그램을 소개해드려요.
+          </p>
 
           <button
             className="flex items-center gap-2 text-sm font-semibold text-gray-000"
@@ -115,17 +120,21 @@ export default function HomePage() {
           >
             {programs?.map((program) => (
               <SwiperSlide
-                key={program.id}
+                key={program.programId}
                 className="flex flex-col w-48 gap-2 mx-[14px]"
               >
                 <ProgramCard
                   {...program}
-                  onClick={() => navigate(`/program/detail/${program.id}`)}
+                  onClick={() =>
+                    navigate(`/program/detail/${program.programId}`)
+                  }
                 />
 
                 <Button
                   style={{ height: 36 }}
-                  onClick={() => navigate(`/program/apply/${program.id}`)}
+                  onClick={() =>
+                    navigate(`/program/apply/${program.programId}`)
+                  }
                 >
                   <span className="flex items-center gap-2">
                     <IcoCheckOutlined className="w-4" stroke="white" />
@@ -144,14 +153,19 @@ export default function HomePage() {
       </section>
 
       {/* <section className="py-16 bg-blue ">
-        <SubTitle text="공지사항" className="text-white" />
+        <SubTitle text="공지사항" className="font-bold text-white font-gmarket-sans" />
       </section> */}
 
-      <section className="w-full max-w-[57.5rem] px-5 py-16 m-auto">
-        <SubTitle text="공간안내" />
+      <section className="w-full max-w-[60rem] px-5 py-16 m-auto">
+        <SubTitle
+          text="공간안내"
+          className="font-bold text-black font-gmarket-sans"
+        />
 
         <div className="flex items-center justify-between mt-2 mb-11">
-          <p>청년센터 공간을 소개해드려요.</p>
+          <p className="font-normal text-gray-000">
+            청년센터 공간을 소개해드려요.
+          </p>
 
           {/* <button
             className="flex items-center gap-2 text-sm font-semibold text-gray-000"
