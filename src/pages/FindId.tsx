@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import Container from "../layouts/Container";
 
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
@@ -9,6 +11,8 @@ import { Button } from "../components/common/Button";
 import { BUTTON_TYPE } from "../constants/keys";
 import { IconContainer } from "../components/account/IconContainer";
 import { IconLabel } from "../components/account/IconLabel";
+import { CommonContext } from "../store/CommonContext";
+import { findEmail } from "../api/auth";
 
 export default function FindIdPage() {
   const navigate = useNavigate();
@@ -18,24 +22,76 @@ export default function FindIdPage() {
   const isFirstStep = step === "check";
   const isSecondStep = step === "results";
 
+  const { setCommon } = useContext(CommonContext);
+
   const [userInfo, setUserInfo] = useState({
-    email: "",
+    userEmail: "",
     createdAt: "",
   });
+  const [user, setUser] = useState({
+    userName: "",
+    userPhoneNumber: "",
+  });
 
-  const handleFindId = () => {
-    navigate("/find/id?step=results");
+  const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  useEffect(() => {
-    setUserInfo({
-      email: "eodrmfdl1004@naver.com",
-      createdAt: "2024.01.11",
-    });
-  }, []);
+  const handleFindId = async () => {
+    if (!user.userName) {
+      setCommon &&
+        setCommon((prev) => ({
+          ...prev,
+          alert: {
+            isShow: true,
+            message: "이름을 입력해주세요.",
+          },
+        }));
+      return;
+    }
+
+    if (!user.userPhoneNumber) {
+      setCommon &&
+        setCommon((prev) => ({
+          ...prev,
+          alert: {
+            isShow: true,
+            message: "핸드폰번호를 입력해주세요.",
+          },
+        }));
+      return;
+    }
+
+    try {
+      const response = await findEmail(user);
+
+      if (!response.success) {
+        throw response;
+      }
+
+      setUserInfo({
+        userEmail: response.userEmail,
+        createdAt: response.createdAt,
+      });
+
+      navigate("/find/id?step=results", { replace: true });
+    } catch (error: any) {
+      console.error(error);
+      setCommon &&
+        setCommon((prev) => ({
+          ...prev,
+          alert: {
+            isShow: true,
+            message: error.response.data.message,
+          },
+        }));
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full px-5 py-14 md:p-5">
+    <Container>
       <Title title="아이디 찾기" />
 
       <div className={"my-4"} />
@@ -76,7 +132,12 @@ export default function FindIdPage() {
           <section className="flex flex-col w-full gap-5 max-w-96">
             <div className="flex flex-col w-full gap-2">
               <Label label="이름" required />
-              <Input placeholder="이름을 입력해주세요." />
+              <Input
+                placeholder="이름을 입력해주세요."
+                name="userName"
+                value={user.userName}
+                onChange={handleChangeValue}
+              />
             </div>
 
             <div className="flex flex-col w-full gap-2">
@@ -84,6 +145,9 @@ export default function FindIdPage() {
               <Input
                 type="number"
                 placeholder="숫자만 입력해주세요. (ex. 01012345678)"
+                name="userPhoneNumber"
+                value={user.userPhoneNumber}
+                onChange={handleChangeValue}
               />
             </div>
           </section>
@@ -113,7 +177,7 @@ export default function FindIdPage() {
               <IcoSetting className="w-[39px] h-[39px] m-2" />
 
               <div>
-                <p className="text-lg font-semibold">{userInfo.email}</p>
+                <p className="text-lg font-semibold">{userInfo.userEmail}</p>
                 <p className="text-sm text-gray-002">
                   가입일 {userInfo.createdAt}
                 </p>
@@ -127,19 +191,21 @@ export default function FindIdPage() {
             <Button
               type={BUTTON_TYPE.outlined}
               style={{ height: "52px" }}
-              onClick={() => navigate("/find/password?step=check")}
+              onClick={() =>
+                navigate("/find/password?step=check", { replace: true })
+              }
             >
               비밀번호 찾기
             </Button>
             <Button
               style={{ height: "52px" }}
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/login", { replace: true })}
             >
               로그인
             </Button>
           </section>
         </>
       )}
-    </div>
+    </Container>
   );
 }

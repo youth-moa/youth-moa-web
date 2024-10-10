@@ -1,0 +1,89 @@
+{
+  "regions": [
+    {
+      "id": 0,
+      "regionName": "가평군",
+      "count": 3
+    },
+    {
+      "id": 1,
+      "regionName": "고양시",
+      "count": 5
+    },
+    {
+      "id": 2,
+      "regionName": "구리시",
+      "count": 3
+    },
+    {
+      "id": 3,
+      "regionName": "군포시",
+      "count": 3
+    },
+    {
+      "id": 4,
+      "regionName": "과천시",
+      "count": 10
+    },
+    {
+      "id": 5,
+      "regionName": "광명시",
+      "count": 3
+    },
+    {
+      "id": 6,
+      "regionName": "김포시",
+      "count": 7
+    },
+    {
+      "id": 7,
+      "regionName": "남양주시",
+      "count": 8
+    },
+    {
+      "id": 8,
+      "regionName": "동두천시",
+      "count": 3
+    },
+    {
+      "id": 9,
+      "regionName": "부천시",
+      "count": 1
+    },
+    {
+      "id": 10,
+      "regionName": "성남시",
+      "count": 3
+    },
+    {
+      "id": 11,
+      "regionName": "부천시",
+      "count": 3
+    },
+    {
+      "id": 12,
+      "regionName": "성남시",
+      "count": 3
+    },
+    {
+      "id": 13,
+      "regionName": "부천시",
+      "count": 3
+    },
+    {
+      "id": 14,
+      "regionName": "성남시",
+      "count": 3
+    },
+    {
+      "id": 15,
+      "regionName": "부천시",
+      "count": 7
+    },
+    {
+      "id": 16,
+      "regionName": "성남시",
+      "count": 9
+    }
+  ]
+}

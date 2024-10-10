@@ -6,8 +6,7 @@ import {
   useState,
 } from "react";
 
-export interface PropsType
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+interface PropsType extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   size?: "small" | "medium";
 }
 

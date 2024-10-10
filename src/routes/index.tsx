@@ -11,6 +11,8 @@ import HomePage from "../pages/Home";
 import ProgramPage from "../pages/Program";
 import NoticePage from "../pages/Notice";
 import FindAccountPage from "../pages/FindAccount";
+import ProgramDetailPage from "../pages/ProgramDetail";
+import ProgramApplyPage from "../pages/ProgramApply";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +22,11 @@ export const router = createBrowserRouter(
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/find/:findType" element={<FindAccountPage />} />
       <Route path="/program" element={<ProgramPage />} />
+      <Route
+        path="/program/detail/:programId"
+        element={<ProgramDetailPage />}
+      />
+      <Route path="/program/apply/:programId" element={<ProgramApplyPage />} />
       <Route path="/notice" element={<NoticePage />} />
     </Route>
   )

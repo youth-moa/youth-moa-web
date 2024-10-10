@@ -1,0 +1,55 @@
+{
+  "programs": [
+    {
+      "id": 0,
+      "programName": "디저트로 떠나는 세계여행",
+      "programStartDate": "2024-07-11",
+      "programEndDate": "2024-07-25",
+      "programImageUrl": "https://png.pngtree.com/png-clipart/20201216/original/pngtree-pink-fresh-gourmet-dessert-poster-png-image_5702293.jpg",
+      "region": "가평군",
+      "center": "가평1",
+      "status": "마감"
+    },
+    {
+      "id": 1,
+      "programName": "그림심리상담",
+      "programStartDate": "2024-06-14",
+      "programEndDate": "2024-07-27",
+      "programImageUrl": "https://www.sangji.ac.kr/images/counsel/main/mslide01.jpg",
+      "region": "가평군",
+      "center": "가평1",
+      "status": "진행중"
+    },
+    {
+      "id": 2,
+      "programName": "상상홍보 서포터즈 1기",
+      "programStartDate": "2024-06-28",
+      "programEndDate": "2024-10-10",
+      "programImageUrl": "https://cdn.imweb.me/upload/S202111228851439219c50/336b161a34153.png",
+      "region": "남양주시",
+      "center": "남양주1",
+      "status": "마감"
+    },
+    {
+      "id": 3,
+      "programName": "나에게 맞는 운동찾기",
+      "programStartDate": "2024-04-17",
+      "programEndDate": "2024-04-22",
+      "programImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4CEX-dk4iLqtme4Pw4pMBBd-NLD6LLFIh_w&s",
+      "region": "남양주시",
+      "center": "남양주3",
+      "status": "진행중"
+    },
+    {
+      "id": 4,
+      "programName": "디저트로 떠나는 세계여행",
+      "programStartDate": "2024-07-11",
+      "programEndDate": "2024-07-25",
+      "programImageUrl": "https://png.pngtree.com/png-clipart/20201216/original/pngtree-pink-fresh-gourmet-dessert-poster-png-image_5702293.jpg",
+      "region": "남양주시",
+      "center": "남양주3",
+      "status": "진행중"
+    }
+  ],
+  "count": 5
+}
