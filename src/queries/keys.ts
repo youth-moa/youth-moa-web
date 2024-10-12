@@ -9,3 +9,7 @@ export const ProgramKey = {
   region: "region",
   center: "center",
 };
+
+export const UserKey = {
+  user: "user",
+};

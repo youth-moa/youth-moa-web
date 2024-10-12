@@ -1,14 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
+import { ReactNode, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getProgramById } from "../api/program";
+import { IcoCheckOutlined } from "../assets";
+import { Button } from "../components/common/Button";
+import { StatusBadge } from "../components/common/StatusBadge";
 import Container from "../layouts/Container";
 import { Section } from "../layouts/Section";
-import { StatusBadge } from "../components/common/StatusBadge";
-import { ReactNode, useEffect, useState } from "react";
-import { Button } from "../components/common/Button";
-import { useQuery } from "@tanstack/react-query";
 import { ProgramKey } from "../queries/keys";
-import { getProgramById } from "../api/program";
 import { dateFormat } from "../utils";
-import { IcoCheckOutlined } from "../assets";
 
 export default function ProgramDetailPage() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function ProgramDetailPage() {
       <Section>
         <div className="flex flex-col items-center h-full gap-6 md:gap-20 md:flex-row">
           <img
-            src={program.programResponseDTO.programImageUrl}
+            src={program.programResponseDTO?.programImageUrl}
             alt="thumbnail"
             className="object-contain h-[19rem] w-full md:h-full md:w-[17rem] rounded-lg"
           />
@@ -48,11 +48,11 @@ export default function ProgramDetailPage() {
           <div className="flex-1 w-full overflow-hidden">
             <section className="flex items-center justify-between w-full">
               <div className="flex flex-col w-full h-full gap-3">
-                <StatusBadge status={program.programResponseDTO.status} />
+                <StatusBadge status={program.programResponseDTO?.status} />
 
                 <div className="flex flex-col gap-1">
                   <h3 className="overflow-hidden text-lg font-medium text-ellipsis whitespace-nowrap">
-                    {program.programResponseDTO.programName}
+                    {program.programResponseDTO?.programName}
                   </h3>
 
                   <p className="overflow-hidden text-sm text-gray-001 text-ellipsis whitespace-nowrap">
@@ -76,8 +76,8 @@ export default function ProgramDetailPage() {
                 </h4>
 
                 <p className="overflow-hidden text-base font-normal w-fit text-gray-000 whitespace-nowrap text-ellipsis">
-                  {program.applyStartDate.split("T")[0]} ~
-                  {program.applyEndDate.split("T")[0]}
+                  {dateFormat(program.applyStartDate)} ~
+                  {dateFormat(program.applyEndDate)}
                 </p>
               </ListItem>
 
@@ -87,8 +87,8 @@ export default function ProgramDetailPage() {
                 </h4>
 
                 <p className="overflow-hidden text-base font-normal w-fit text-gray-000 whitespace-nowrap text-ellipsis">
-                  {dateFormat(program.programResponseDTO.programStartDate)} ~
-                  {dateFormat(program.programResponseDTO.programEndDate)}
+                  {dateFormat(program.programResponseDTO?.programStartDate)} ~
+                  {dateFormat(program.programResponseDTO?.programEndDate)}
                 </p>
               </ListItem>
 
@@ -110,31 +110,33 @@ export default function ProgramDetailPage() {
                 </p>
               </ListItem>
 
-              <ListItem>
-                <h4 className="w-1/4 font-medium text-black min-w-16">
-                  첨부파일
-                </h4>
+              {program.attachmentUrl && (
+                <ListItem>
+                  <h4 className="w-1/4 font-medium text-black min-w-16">
+                    첨부파일
+                  </h4>
 
-                <div className="flex flex-col">
-                  {program.attachmentUrl.map((url, index) => (
-                    <a
-                      key={index}
-                      href={url}
-                      className="text-base font-normal cursor-pointer w-fit text-gray-000"
-                      download
-                    >
-                      {url}
-                    </a>
-                  ))}
-                </div>
-              </ListItem>
+                  <div className="flex flex-col">
+                    {program.attachmentUrl?.map((url, index) => (
+                      <a
+                        key={index}
+                        href={url}
+                        className="text-base font-normal cursor-pointer w-fit text-gray-000"
+                        download
+                      >
+                        {url}
+                      </a>
+                    ))}
+                  </div>
+                </ListItem>
+              )}
             </ul>
 
             <section className="flex items-center h-10 gap-3">
               {/* <button>즐겨찾기 아이콘</button> */}
               <Button
                 onClick={() => navigate(`/program/apply/${programId}`)}
-                disabled={program.programResponseDTO.status === "closed"}
+                disabled={program.programResponseDTO?.status === "closed"}
               >
                 <span className="flex items-center gap-2">
                   <IcoCheckOutlined stroke="white" width={16} />

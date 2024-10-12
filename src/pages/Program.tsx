@@ -1,15 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 
 import Container from "../layouts/Container";
 
-import { Title } from "../components/common/Title";
-import { ProgramCard } from "../components/common/ProgramCard";
-import { FilterModal } from "../components/program/FilterModal";
+import Pagination from "@mui/material/Pagination";
 import { Button } from "../components/common/Button";
+import { ProgramCard } from "../components/common/ProgramCard";
+import { Title } from "../components/common/Title";
+import { FilterModal } from "../components/program/FilterModal";
 
-import type { ProgramFilterModalType } from "../types/program";
+import { getCenterList, getProgramList, getRegionList } from "../api/program";
 import {
   IcoArrowUp,
   IcoCheckFilled,
@@ -18,9 +19,9 @@ import {
   IcoNext,
   IcoRefresh,
 } from "../assets";
-import { CommonKey, ProgramKey } from "../queries/keys";
-import { getCenterList, getProgramList, getRegionList } from "../api/program";
 import { PROGRAM_SORT } from "../constants/keys";
+import { CommonKey, ProgramKey } from "../queries/keys";
+import type { ProgramFilterModalType } from "../types/program";
 
 const SORT_LIST = [
   { key: PROGRAM_SORT.TOTAL, name: "전체" },
@@ -33,6 +34,7 @@ const MAX_NUM = 15;
 export default function ProgramPage() {
   const navigate = useNavigate();
 
+  const [isRefetch, setIsRefetch] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<number[]>([]);
   const [selectedCenters, setSelectedCenters] = useState<number[]>([]);
   const [sorted, setSorted] = useState(PROGRAM_SORT.TOTAL);
@@ -77,7 +79,7 @@ export default function ProgramPage() {
   const { data: programs, refetch: programsRefetch } = useQuery({
     queryKey: [
       CommonKey.list,
-      { type: ProgramKey.program, page: page.current },
+      { type: ProgramKey.program, page: page.current, sort: sorted },
     ],
     queryFn: async () => {
       const params = {
@@ -98,18 +100,21 @@ export default function ProgramPage() {
   });
 
   useEffect(() => {
+    programsRefetch();
+  }, [isRefetch]);
+
+  useEffect(() => {
     centersRefetch();
   }, [selectedRegions.length]);
 
-  useEffect(() => {
-    programsRefetch();
-  }, [selectedRegions.length, selectedCenters.length, sorted, page.current]);
-
   const handleClick = (sort: string) => {
     setSorted(sort);
+    setIsRefetch((prev) => !prev);
   };
 
   const handleSelectRegion = (regionId: number) => {
+    setIsRefetch((prev) => !prev);
+
     if (selectedRegions.includes(regionId)) {
       setSelectedRegions((prev) => prev.filter((id) => id !== regionId));
       return;
@@ -120,6 +125,8 @@ export default function ProgramPage() {
   };
 
   const handleSelectCenter = (id: number) => {
+    setIsRefetch((prev) => !prev);
+
     if (selectedCenters.includes(id)) {
       setSelectedCenters((prev) => prev.filter((c) => c !== id));
       return;
@@ -145,6 +152,7 @@ export default function ProgramPage() {
   const handleClickReset = () => {
     setSelectedCenters([]);
     setSelectedRegions([]);
+    setIsRefetch((prev) => !prev);
   };
 
   return (
@@ -164,7 +172,7 @@ export default function ProgramPage() {
 
             <div className="flex items-center justify-between w-full md:w-fit">
               <div className="flex items-center gap-2">
-                {SORT_LIST.map((item, index) => (
+                {SORT_LIST?.map((item, index) => (
                   <Badge
                     key={index}
                     name={item.name}
@@ -208,7 +216,7 @@ export default function ProgramPage() {
               </button>
 
               <div className="flex flex-col gap-1 px-5 py-3 rounded-b-lg bg-gray-005">
-                {regions?.slice(0, MAX_NUM).map((region) => (
+                {regions?.slice(0, MAX_NUM)?.map((region) => (
                   <Item
                     key={region.id}
                     name={region.regionName}
@@ -229,7 +237,7 @@ export default function ProgramPage() {
                           setFilterModal({
                             isOpen: true,
                             title: "지역",
-                            list: regions.map((region) => ({
+                            list: regions?.map((region) => ({
                               id: region.id,
                               name: region.regionName,
                               count: region.centerCount,
@@ -262,7 +270,7 @@ export default function ProgramPage() {
               </button>
 
               <div className="flex flex-col gap-1 px-5 py-3 rounded-b-lg bg-gray-005">
-                {centers?.slice(0, MAX_NUM).map((center) => (
+                {centers?.slice(0, MAX_NUM)?.map((center) => (
                   <Item
                     key={center.id}
                     name={center.centerName}
@@ -282,7 +290,7 @@ export default function ProgramPage() {
                           setFilterModal({
                             isOpen: true,
                             title: "청년센터",
-                            list: centers.map((center) => ({
+                            list: centers?.map((center) => ({
                               id: center.id,
                               name: center.centerName,
                             })),
@@ -306,11 +314,10 @@ export default function ProgramPage() {
           <section className="w-full">
             <div className="my-3" />
 
-            <div className="flex flex-wrap items-center gap-5">
+            <div className="flex flex-wrap items-center flex-1 gap-5">
               {programs?.map((program) => (
-                <div className="flex flex-col gap-2">
+                <div key={program.programId} className="flex flex-col gap-2">
                   <ProgramCard
-                    key={program.programId}
                     {...program}
                     onClick={() =>
                       navigate(`/program/detail/${program.programId}`)
@@ -330,6 +337,16 @@ export default function ProgramPage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="flex justify-center w-full mt-11">
+              <Pagination
+                count={page.total}
+                page={page.current + 1}
+                onChange={(_, page) =>
+                  setPage((prev) => ({ ...prev, current: page - 1 }))
+                }
+              />
             </div>
           </section>
         </section>
