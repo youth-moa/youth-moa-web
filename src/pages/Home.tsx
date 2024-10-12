@@ -27,7 +27,7 @@ export default function HomePage() {
   const [programSwiper, setProgramSwiper] = useState<Swiper | undefined>();
   const [spaceSwiper, setSpaceSwiper] = useState<Swiper | undefined>();
 
-  const { data: programs, refetch: programsRefetch } = useQuery({
+  const { data: programs } = useQuery({
     queryKey: [CommonKey.list, { type: ProgramKey.program }],
     queryFn: async (): Promise<ProgramListType[]> => {
       const params = {
