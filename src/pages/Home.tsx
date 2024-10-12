@@ -75,7 +75,7 @@ export default function HomePage() {
           {banners?.map((banner, index) => (
             <SwiperSlide
               key={index}
-              className="flex flex-col w-full h-[15rem] sm:h-[20rem] md:h-[30rem]"
+              className="flex flex-col w-full h-[15rem] sm:h-[20rem] md:h-full"
             >
               <img
                 className="object-cover h-full"
