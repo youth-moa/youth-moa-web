@@ -18,3 +18,8 @@ export const PROGRAM_SORT = {
   POPULAR: "popular",
   PROGRESS: "progress",
 };
+
+export const GENDER = {
+  F: "여",
+  M: "남",
+};

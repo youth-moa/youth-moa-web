@@ -6,25 +6,21 @@ import { dateFormat } from "../../utils";
 import { Button } from "../common/Button";
 import { StatusBadge } from "../common/StatusBadge";
 import { Section } from "./Section";
-import { ProgramCancelModal } from "./ProgramCancelModal";
 
 interface PropsType extends ProgramApplicationType {
   isShowCancelModal: boolean;
-  onCancelProgram: (id: number) => void;
-  onCloseModal: () => void;
+  onCancelProgram: (program: any) => void;
 }
 
 export function ProgramApplyCard(props: PropsType) {
   const {
-    isShowCancelModal,
     programId,
     programName,
     applicationDate,
-    status,
+    applicationStatus,
     programStartDate,
     programImageUrl,
     onCancelProgram,
-    onCloseModal,
   } = props;
 
   const navigate = useNavigate();
@@ -48,7 +44,7 @@ export function ProgramApplyCard(props: PropsType) {
         <section className="w-full">
           <div className="flex items-center gap-3">
             <h3 className="text-sm font-semibold md:text-lg">{programName}</h3>
-            <StatusBadge status={status} padding="md:px-4 px-3" />
+            <StatusBadge status={applicationStatus} padding="md:px-4 px-3" />
           </div>
 
           <div className="my-1" />
@@ -59,10 +55,20 @@ export function ProgramApplyCard(props: PropsType) {
           </ul>
 
           <div className="mt-3 h-7 md:h-9">
-            {(status === "approved" || status === "pending") && (
+            {(applicationStatus === "approved" ||
+              applicationStatus === "pending") && (
               <Button
                 type={BUTTON_TYPE.outlined}
-                onClick={() => onCancelProgram(programId)}
+                onClick={() =>
+                  onCancelProgram({
+                    programId,
+                    programName,
+                    applicationDate,
+                    applicationStatus,
+                    programStartDate,
+                    programImageUrl,
+                  })
+                }
                 isError
               >
                 <span className="flex items-center gap-2 font-semibold text-[10px] md:text-sm">
@@ -72,7 +78,8 @@ export function ProgramApplyCard(props: PropsType) {
               </Button>
             )}
 
-            {(status === "rejected" || status === "canceled") && (
+            {(applicationStatus === "rejected" ||
+              applicationStatus === "canceled") && (
               <Button
                 type={BUTTON_TYPE.outlined}
                 onClick={() => navigate(`/program/apply/${programId}`)}
@@ -85,10 +92,6 @@ export function ProgramApplyCard(props: PropsType) {
           </div>
         </section>
       </section>
-
-      {isShowCancelModal && (
-        <ProgramCancelModal programId={programId} onClose={onCloseModal} />
-      )}
     </Section>
   );
 }

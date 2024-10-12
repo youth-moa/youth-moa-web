@@ -1,25 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 
 import Swiper from "swiper";
 import { Swiper as SwiperContainer, SwiperSlide } from "swiper/react";
-import { SubTitle } from "../components/home/SubTitle";
+import { IcoCheckOutlined, IcoNext } from "../assets";
+import { Button } from "../components/common/Button";
 import { ProgramCard } from "../components/common/ProgramCard";
 import { NextButton } from "../components/home/NextButton";
 import { PrevButton } from "../components/home/PrevButton";
-import { Button } from "../components/common/Button";
-import { IcoCheckOutlined, IcoNext } from "../assets";
+import { SubTitle } from "../components/home/SubTitle";
 
+import { getBannerList, getSpageList } from "../api/common";
+import { getProgramList } from "../api/program";
+import { CommonKey, ProgramKey } from "../queries/keys";
 import type { BannerListType } from "../types/common";
 import type { ProgramListType } from "../types/program";
-import { CommonKey, ProgramKey } from "../queries/keys";
-import { getSpageList } from "../api/common";
-import { getProgramList } from "../api/program";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function HomePage() {
   const [programSwiper, setProgramSwiper] = useState<Swiper | undefined>();
   const [spaceSwiper, setSpaceSwiper] = useState<Swiper | undefined>();
 
-  const { data: programs } = useQuery({
+  const { data: programs, refetch: programsRefetch } = useQuery({
     queryKey: [CommonKey.list, { type: ProgramKey.program }],
     queryFn: async (): Promise<ProgramListType[]> => {
       const params = {
@@ -46,18 +46,16 @@ export default function HomePage() {
 
       return data;
     },
+    initialData: [],
   });
 
-  // TODO: 배너 api 연동 및 useQuery 변경
   const { data: banners } = useQuery({
     queryKey: [CommonKey.list, { type: CommonKey.banner }],
     queryFn: async (): Promise<BannerListType[]> => {
-      const data = await fetch("dummy-data/space.json")
-        .then((res) => res.json())
-        .then((data) => data.spaces);
-
+      const data = await getBannerList();
       return data;
     },
+    initialData: [],
   });
 
   return (
@@ -73,12 +71,16 @@ export default function HomePage() {
             delay: 3500,
           }}
         >
-          {banners?.map((banner) => (
+          {banners?.map((banner, index) => (
             <SwiperSlide
-              key={banner.id}
+              key={index}
               className="flex flex-col w-full h-[15rem] sm:h-[20rem] md:h-[30rem]"
             >
-              <img className="object-cover h-full" src={banner.src} />
+              <img
+                className="object-cover h-full"
+                src={banner.bannerUrl}
+                alt={banner.bannerName}
+              />
             </SwiperSlide>
           ))}
         </SwiperContainer>

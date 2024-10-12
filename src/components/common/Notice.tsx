@@ -15,7 +15,7 @@ export function Notice(props: PropsType) {
 
   return (
     // TODO: 애니메이션 추가
-    <Portal portalId="modal">
+    <Portal portalId="notice-alert">
       <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full p-5">
         <div className="fixed top-0 left-0 w-full h-full bg-black opacity-30" />
 

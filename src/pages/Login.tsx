@@ -7,12 +7,19 @@ import { Button } from "../components/common/Button";
 import { Input } from "../components/common/Input";
 import { Title } from "../components/common/Title";
 
-import { BUTTON_TYPE } from "../constants/keys";
 import { login } from "../api/auth";
+import { BUTTON_TYPE } from "../constants/keys";
 import { CommonContext } from "../store/CommonContext";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const isLogin = localStorage.getItem("accessToken");
+
+  if (isLogin) {
+    navigate("/");
+    return;
+  }
+
   const { setCommon } = useContext(CommonContext);
 
   const [user, setUser] = useState({
@@ -55,7 +62,6 @@ export default function LoginPage() {
       const response = await login(user);
 
       if (!response.success) {
-        // setIsOpen(true);
         throw response;
       }
 
@@ -63,7 +69,7 @@ export default function LoginPage() {
       localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
 
-      navigate(-1);
+      navigate("/");
     } catch (error: any) {
       console.error(error);
       setCommon &&
@@ -71,7 +77,6 @@ export default function LoginPage() {
           ...prev,
           alert: {
             isShow: true,
-            // message: error.response.data.message ?? "로그인 할 수 없습니다.",
             message:
               "가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해주세요.",
           },

@@ -2,7 +2,9 @@ import {
   CenterListRequestBody,
   CenterListResponse,
   CommonResponse,
+  ProgramApplicationDetailType,
   ProgramApplicationFormType,
+  ProgramCancelRequestBody,
   ProgramDetailType,
   ProgramListRequestBody,
   ProgramListResponse,
@@ -37,8 +39,30 @@ export function getProgramById(programId: number): Promise<ProgramDetailType> {
 }
 
 /** 프로그램 신청 */
-export function postProgram(
-  body: ProgramApplicationFormType
-): Promise<CommonResponse> {
-  return api.post("/api/applications", body);
+export function applylProgram({
+  programId,
+  body,
+}: {
+  programId: number;
+  body: ProgramApplicationFormType;
+}): Promise<CommonResponse> {
+  return api.post(`/api/applications/${programId}`, body);
+}
+
+/** 프로그램 신청 취소 */
+export function deleteProgram({
+  programId,
+  body,
+}: {
+  programId: number;
+  body: ProgramCancelRequestBody;
+}): Promise<CommonResponse> {
+  return api.delete(`/api/mypage/programs/${programId}/cancel`, { data: body });
+}
+
+/** 프로그램 신청 정보 상세 조회 */
+export function getProgramDetail(
+  programId: number
+): Promise<ProgramApplicationDetailType> {
+  return api.get(`/api/mypage/programs/${programId}`);
 }

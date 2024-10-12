@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { IcoDownload, IcoHamburger, IcoAccount, Logo, Symbol } from "../assets";
-import { useUser } from "../hooks/useUser";
 import { logout } from "../api/auth";
-import { useContext } from "react";
-import { CommonContext } from "../store/CommonContext";
+import { IcoAccount, IcoDownload, IcoHamburger, Logo, Symbol } from "../assets";
+import { useUser } from "../hooks/useUser";
+// import { useContext } from "react";
+// import { CommonContext } from "../store/CommonContext";
 import { toast } from "react-toastify";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { setCommon } = useContext(CommonContext);
+  // const { setCommon } = useContext(CommonContext);
 
   const { accessToken } = useUser();
 
@@ -28,17 +28,24 @@ export default function Header() {
       localStorage.removeItem("refreshToken");
 
       toast.success("로그아웃 되었습니다.");
+
+      if (location.href.includes("my")) {
+        navigate("/");
+      }
     } catch (error: any) {
       console.error(error);
 
-      setCommon &&
-        setCommon((prev) => ({
-          ...prev,
-          alert: {
-            isShow: true,
-            message: error.response.data.message,
-          },
-        }));
+      // setCommon &&
+      //   setCommon((prev) => ({
+      //     ...prev,
+      //     alert: {
+      //       isShow: true,
+      //       message: error.data.message,
+      //     },
+      //   }));
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/login");
     }
   };
 

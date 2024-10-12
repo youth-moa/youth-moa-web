@@ -1,4 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
+import IcoAccount from "./account.svg?react";
 import IcoAlarm from "./alarm.svg?react";
 import IcoArrowUp from "./arrow-up.svg?react";
 import IcoBookMark from "./book-mark.svg?react";
@@ -12,6 +13,7 @@ import IcoDownload from "./download.svg?react";
 import IcoErrorCircle from "./error-circle.svg?react";
 import IcoEyeSlash from "./eye-slash.svg?react";
 import IcoEye from "./eye.svg?react";
+import IcoFileDownload from "./file-download.svg?react";
 import IcoFilter from "./filter.svg?react";
 import IcoHamburger from "./hamburger.svg?react";
 import IcoNext from "./next.svg?react";
@@ -23,23 +25,24 @@ import IcoSetting from "./setting.svg?react";
 import IcoShare from "./share.svg?react";
 import IcoStarOutlined from "./star-outlined.svg?react";
 import IcoStarFilled from "./start-filled.svg?react";
-import IcoAccount from "./account.svg?react";
 import IcoUser from "./user.svg?react";
 
 export {
+  IcoAccount,
   IcoAlarm,
   IcoArrowUp,
   IcoBookMark,
-  IcoCancelOutlined,
   IcoCancel,
+  IcoCancelOutlined,
   IcoCardSearchOutlined,
-  IcoCheckFilledWhite,
   IcoCheckFilled,
+  IcoCheckFilledWhite,
   IcoCheckOutlined,
-  IcoErrorCircle,
   IcoDownload,
-  IcoEyeSlash,
+  IcoErrorCircle,
   IcoEye,
+  IcoEyeSlash,
+  IcoFileDownload,
   IcoFilter,
   IcoHamburger,
   IcoNext,
@@ -49,8 +52,7 @@ export {
   IcoSearch,
   IcoSetting,
   IcoShare,
-  IcoStarOutlined,
   IcoStarFilled,
-  IcoAccount,
+  IcoStarOutlined,
   IcoUser,
 };

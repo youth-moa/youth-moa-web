@@ -1,47 +1,17 @@
 import { useState } from "react";
+import { ProgramApplicationType } from "../../types/program";
+import { Notice } from "../common/Notice";
 import { ProgramApplyCard } from "./ProgramApplyCard";
 import { ProgramApplyHeader } from "./ProgramApplyHeader";
-import { Notice } from "../common/Notice";
+import { ProgramCancelModal } from "./ProgramCancelModal";
 
-export function ProgramApplication() {
-  const programs = [
-    {
-      programId: 1,
-      programName: "프로그램A",
-      applicationDate: "2024-10-09T12:41:07.715Z",
-      status: "canceled" as const,
-      programStartDate: "2024-10-09T12:41:07.715Z",
-      programEndDate: "2024-10-09T12:41:07.715Z",
-      programImageUrl: "",
-    },
-    {
-      programId: 2,
-      programName: "프로그램A",
-      applicationDate: "2024-10-09T12:41:07.715Z",
-      status: "approved" as const,
-      programStartDate: "2024-10-09T12:41:07.715Z",
-      programEndDate: "2024-10-09T12:41:07.715Z",
-      programImageUrl: "",
-    },
-    {
-      programId: 3,
-      programName: "프로그램A",
-      applicationDate: "2024-10-09T12:41:07.715Z",
-      status: "pending" as const,
-      programStartDate: "2024-10-09T12:41:07.715Z",
-      programEndDate: "2024-10-09T12:41:07.715Z",
-      programImageUrl: "",
-    },
-    {
-      programId: 4,
-      programName: "프로그램A",
-      applicationDate: "2024-10-09T12:41:07.715Z",
-      status: "rejected" as const,
-      programStartDate: "2024-10-09T12:41:07.715Z",
-      programEndDate: "2024-10-09T12:41:07.715Z",
-      programImageUrl: "",
-    },
-  ];
+interface PropsType {
+  programs: ProgramApplicationType[];
+  refetch: any;
+}
+
+export function ProgramApplication(props: PropsType) {
+  const { programs, refetch } = props;
 
   const [isShowCancelModal, setIsShowCancelModal] = useState(false);
   const [isNoticeShow, setIsNoticeShow] = useState(false);
@@ -52,14 +22,17 @@ export function ProgramApplication() {
   });
 
   const [programFilter, setProgramFilter] = useState(0);
+  const [selected, setSelected] = useState<any>();
 
-  const handleClickCancelProgram = (programId: number) => {
+  const handleClickCancelProgram = (program: any) => {
+    setSelected(program);
     setIsNoticeShow(true);
     setNotice({
       message: "신청 취소하시겠습니까?",
       onClick: () => {
         setIsNoticeShow(false);
         setIsShowCancelModal(true);
+        refetch();
       },
       onClose: () => setIsNoticeShow(false),
     });
@@ -76,22 +49,31 @@ export function ProgramApplication() {
   return (
     <section className="flex flex-col gap-4">
       <ProgramApplyHeader
-        isProgram={programs.length > 0}
+        isProgram={programs?.length > 0}
         handleChangeFilter={handleChangeFilter}
         programFilter={programFilter}
       />
 
-      {programs.map((item) => (
+      {programs?.map((item) => (
         <ProgramApplyCard
           key={item.programId}
           isShowCancelModal={isShowCancelModal}
           onCancelProgram={handleClickCancelProgram}
-          onCloseModal={handleCloseCancelModal}
           {...item}
         />
       ))}
 
       {isNoticeShow && <Notice {...notice} />}
+
+      {isShowCancelModal && selected && (
+        <ProgramCancelModal
+          programId={selected.programId}
+          programStartDate={selected.programStartDate}
+          title={selected.programName}
+          image={selected.programImageUrl}
+          onClose={handleCloseCancelModal}
+        />
+      )}
     </section>
   );
 }

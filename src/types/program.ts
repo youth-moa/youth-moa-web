@@ -1,3 +1,5 @@
+import { UserType } from "./auth";
+
 export interface CommonResponse {
   success: boolean;
   message: string;
@@ -116,7 +118,6 @@ export interface ProgramDetailType {
   capacity: number;
   applicationCount: number;
   contactInfo: string;
-  programImageUrl: string;
   programDetailImageUrl: string | null;
   programDetail: string | null;
   regionId: number;
@@ -124,10 +125,23 @@ export interface ProgramDetailType {
   centerId: number;
   centerName: string;
   attachmentUrl: string[];
+  programLocation: string;
+  attachments: {
+    attachmentUrl: string;
+    attachmentTitle: string;
+  }[];
+  objectiveQuestions: {
+    questionTitle: string;
+    options: string[];
+  }[];
+  courses: string[];
 }
 
 export interface ProgramApplicationFormType {
-  programId: number;
+  userName: string;
+  userPhoneNumber: string;
+  userMainAddress: string;
+  userDetailAddress: string;
   selectedCourse: string;
   subjectiveAnswer: string;
   objectiveAnswer: string;
@@ -139,8 +153,26 @@ export interface ProgramApplicationType {
   programId: number;
   programName: string;
   applicationDate: string;
-  status: "pending" | "approved" | "rejected" | "canceled";
   programStartDate: string;
   programEndDate: string;
   programImageUrl: string;
+  applicationStatus: "pending" | "approved" | "rejected" | "canceled";
+  status: "progress" | "closed";
+}
+
+export interface ProgramCancelRequestBody {
+  programId: number;
+  cancelReason: string;
+  cancelOtherReason: string;
+}
+
+export interface ProgramApplicationDetailType {
+  programApplication: ProgramApplicationType;
+  applicantInfo: UserType;
+  applicationDate: string;
+  approvalDate: string;
+  adminComment: string;
+  cancelDate: string;
+  cancelReason: string;
+  cancelOtherReason: string;
 }

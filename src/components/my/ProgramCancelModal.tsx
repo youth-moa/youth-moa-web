@@ -1,17 +1,26 @@
-import { ChangeEvent, useState } from "react";
-import { ModalContainer } from "../../layouts/ModalContainer";
-import { Radio } from "../common/Radio";
-import { Button } from "../common/Button";
+import { ChangeEvent, useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { deleteProgram } from "../../api/program";
 import { BUTTON_TYPE } from "../../constants/keys";
+import { ModalContainer } from "../../layouts/ModalContainer";
+import { CommonContext } from "../../store/CommonContext";
+import { Button } from "../common/Button";
 import { Input } from "../common/Input";
+import { Radio } from "../common/Radio";
 
 interface PropsType {
   programId: number;
+  programStartDate: string;
+  title: string;
+  image: string;
   onClose: () => void;
+  refetch?: any;
 }
 
 export function ProgramCancelModal(props: PropsType) {
-  const { programId, onClose } = props;
+  const { programId, programStartDate, title, image, onClose, refetch } = props;
+
+  const { setCommon } = useContext(CommonContext);
 
   const [form, setForm] = useState({
     programId: programId,
@@ -29,13 +38,34 @@ export function ProgramCancelModal(props: PropsType) {
     }
   };
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
     if (form.cancelReason === "기타" && !form.cancelOtherReason) {
       setReasonErrorMsg("필수 입력 항목입니다.");
       return;
     }
 
-    // TODO: 신청 취소
+    try {
+      const response = await deleteProgram({ programId, body: form });
+
+      if (!response.success) {
+        throw response;
+      }
+
+      toast.success("취소되었습니다.");
+      refetch && refetch();
+      onClose();
+    } catch (error: any) {
+      console.error(error);
+
+      setCommon &&
+        setCommon((prev) => ({
+          ...prev,
+          alert: {
+            isShow: true,
+            message: error.data.message,
+          },
+        }));
+    }
   };
 
   return (
@@ -44,8 +74,11 @@ export function ProgramCancelModal(props: PropsType) {
         <h2 className="text-lg font-semibold">프로그램 신청 취소</h2>
 
         <section className="flex gap-10">
-          <img />
-          <div></div>
+          <img src={image} className="object-cover w-32 h-32 rounded-lg" />
+          <div>
+            <h3 className="text-lg font-semibold">{title}</h3>
+            <p className="font-normal text-gray-000">{programStartDate}</p>
+          </div>
         </section>
 
         <section>

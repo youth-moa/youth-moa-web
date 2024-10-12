@@ -4,6 +4,6 @@ export interface SpaceListType {
 }
 
 export interface BannerListType {
-  id: string | number;
-  src: string;
+  bannerName: string;
+  bannerUrl: string;
 }

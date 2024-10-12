@@ -2,17 +2,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Container from "../layouts/Container";
 
-import { Title } from "../components/common/Title";
-import { IconContainer } from "../components/account/IconContainer";
-import { IcoCardSearchOutlined, IcoUser } from "../assets";
-import { IconLabel } from "../components/account/IconLabel";
-import { Label } from "../components/common/Label";
-import { Input } from "../components/common/Input";
-import { Button } from "../components/common/Button";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { CommonContext } from "../store/CommonContext";
-import { changePassword, findPassword } from "../api/auth";
 import { toast } from "react-toastify";
+import { changePassword, findPassword } from "../api/auth";
+import { IcoCardSearchOutlined, IcoUser } from "../assets";
+import { IconContainer } from "../components/account/IconContainer";
+import { IconLabel } from "../components/account/IconLabel";
+import { Button } from "../components/common/Button";
+import { Input } from "../components/common/Input";
+import { Label } from "../components/common/Label";
+import { Title } from "../components/common/Title";
+import { CommonContext } from "../store/CommonContext";
 
 export default function FindPasswordPage() {
   const navigate = useNavigate();
@@ -116,7 +116,7 @@ export default function FindPasswordPage() {
           ...prev,
           alert: {
             isShow: true,
-            message: error.response.data.message,
+            message: error.data.message,
           },
         }));
     }
@@ -141,7 +141,7 @@ export default function FindPasswordPage() {
           ...prev,
           alert: {
             isShow: true,
-            message: error.response.data.message,
+            message: error.data.message,
           },
         }));
     }

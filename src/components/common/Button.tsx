@@ -19,7 +19,7 @@ export function Button({
   onClick,
   ...rest
 }: PropsType) {
-  const bgColorName = type === BUTTON_TYPE.outlined ? "bg-white" : "bg-blue";
+  const bgColorName = type === BUTTON_TYPE.outlined ? "" : "bg-blue";
   const textColorName = isError
     ? "text-red"
     : type === BUTTON_TYPE.outlined

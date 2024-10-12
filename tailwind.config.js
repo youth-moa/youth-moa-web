@@ -10,6 +10,7 @@ export default {
         title: "rgba(64, 65, 75, 1)",
         text: "rgba(77, 75, 75, 1)",
         blue: "rgba(63, 48, 233, 1)",
+        "blue-opacity": "rgba(236, 237, 255, 1)",
         badge: {
           progress: "rgba(69, 180, 25, 1)",
           closed: "rgba(130, 128, 134, 1)",
