@@ -37,6 +37,7 @@ export default function HomePage() {
 
       return data.content;
     },
+    initialData: [],
   });
 
   const { data: spaces } = useQuery({
