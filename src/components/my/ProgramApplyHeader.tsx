@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { IcoPageFlip } from "../../assets";
 import { Button } from "../common/Button";
-import { SubTitle } from "./SubTitle";
 import { Section } from "./Section";
+import { SubTitle } from "./SubTitle";
 
 interface PropsType {
   isProgram?: boolean;
@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 export function ProgramApplyHeader(props: PropsType) {
-  const { isProgram, programFilter, handleChangeFilter } = props;
+  const { isProgram } = props;
 
   const navigate = useNavigate();
 
