@@ -41,7 +41,11 @@ export function FilterModal(props: PropsType) {
   return (
     <ModalContainer
       onClose={onClose}
-      className={title === "청년센터" ? "md:max-w-[50rem]" : "md:max-w-[30rem]"}
+      className={
+        title === "청년센터"
+          ? "md:max-w-[50rem]"
+          : "md:max-w-[30rem] md:max-h-[35rem]"
+      }
     >
       <section className="flex items-center justify-between mt-8 mx-11">
         <p className="text-xl font-semibold">{title}</p>
@@ -53,9 +57,9 @@ export function FilterModal(props: PropsType) {
 
       <section className="flex gap-2 my-4 overflow-x-auto mx-11 h-[60px] items-center">
         {newSelected.length > 0 &&
-          newSelected.map((item) => (
+          newSelected?.map((item) => (
             <span className="bg-blue text-sm rounded-[20px] text-white w-fit px-[14px] py-1 flex items-center justify-between gap-3">
-              <p className="w-max">{list.find((l) => l.id === item)?.name}</p>
+              <p className="w-max">{list?.find((l) => l.id === item)?.name}</p>
               <button onClick={() => handleSelectItem(item)}>
                 <IcoCancel width={16} stroke="white" />
               </button>
@@ -70,7 +74,7 @@ export function FilterModal(props: PropsType) {
       </section>
 
       <section className="flex flex-wrap overflow-auto mx-11">
-        {list.map((item) => (
+        {list?.map((item) => (
           <Item
             key={item.id}
             name={item.name}
@@ -113,7 +117,7 @@ function Item(props: ItemPropsType) {
         {isChecked ? (
           <IcoCheckFilled
             fill="rgba(63, 48, 233, 1)"
-            stroke="white"
+            stroke="rgba(63, 48, 233, 1)"
             width={14}
           />
         ) : (

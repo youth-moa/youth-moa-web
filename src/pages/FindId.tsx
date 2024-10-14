@@ -3,16 +3,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Container from "../layouts/Container";
 
-import { Input } from "../components/common/Input";
-import { Title } from "../components/common/Title";
-import { IcoCardSearchOutlined, IcoSetting, IcoUser } from "../assets";
-import { Label } from "../components/common/Label";
-import { Button } from "../components/common/Button";
-import { BUTTON_TYPE } from "../constants/keys";
+import { findEmail } from "../api/auth";
+import { IcoAccount, IcoCardSearchOutlined, IcoUser } from "../assets";
 import { IconContainer } from "../components/account/IconContainer";
 import { IconLabel } from "../components/account/IconLabel";
+import { Button } from "../components/common/Button";
+import { Input } from "../components/common/Input";
+import { Label } from "../components/common/Label";
+import { Title } from "../components/common/Title";
+import { BUTTON_TYPE } from "../constants/keys";
 import { CommonContext } from "../store/CommonContext";
-import { findEmail } from "../api/auth";
 
 export default function FindIdPage() {
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ export default function FindIdPage() {
           ...prev,
           alert: {
             isShow: true,
-            message: error.response.data.message,
+            message: error.data.message,
           },
         }));
     }
@@ -174,7 +174,7 @@ export default function FindIdPage() {
             </div>
 
             <div className="flex items-center px-8 py-6 rounded-md bg-gray-005 text-start md:gap-[14px]">
-              <IcoSetting className="w-[39px] h-[39px] m-2" />
+              <IcoAccount className="w-[39px] h-[39px] m-2" />
 
               <div>
                 <p className="text-lg font-semibold">{userInfo.userEmail}</p>

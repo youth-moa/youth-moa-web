@@ -2,8 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: light;
+  src: url("./assets/fonts/GmarketSansTTFLight.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: medium;
+  src: url("./assets/fonts/GmarketSansTTFMedium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: bold;
+  src: url("./assets/fonts/GmarketSansTTFBold.ttf") format("truetype");
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: pretendard, Gmarket, Sans, TTF, sans-serif;
+  font-style: normal;
+  font-weight: 100;
 }
 
 ul {
@@ -13,7 +32,8 @@ ul {
 a {
   text-decoration: none;
 }
- 
-.swiper-button-next:after, .swiper-button-prev:after {
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
   display: none;
 }

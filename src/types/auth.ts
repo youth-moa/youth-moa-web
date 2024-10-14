@@ -1,7 +1,10 @@
+import { ProgramApplicationType } from "./program";
+
 export interface AccountType {
   personalAgree: boolean;
   termsOfService: boolean;
-  userAddress: string;
+  userMainAddress: string;
+  userDetailAddress: string;
   userBirthday: string;
   userEmail: string;
   userGender: "M" | "F";
@@ -9,6 +12,11 @@ export interface AccountType {
   userPassword: string;
   userPasswordCheck: string;
   userPhoneNumber: string;
+}
+
+export interface LoginRequest {
+  userEmail: string;
+  userPassword: string;
 }
 
 export interface LoginResponse {
@@ -50,4 +58,23 @@ export interface FindPasswordResponse {
 export interface ChangePasswordRequest {
   newPassword: string;
   newPasswordCheck: string;
+}
+
+export interface UserType {
+  applicantName: string;
+  applicantPhoneNumber: string;
+  applicantEmail: string;
+  applicantGender: "M" | "F";
+  applicantBirthday: string;
+  applicantMainAddress: string;
+  applicantDetailAddress: string;
+}
+
+export interface UserResponse {
+  userInfo: UserType;
+  appliedPrograms: ProgramApplicationType[];
+  programStatusCounts: {
+    ongoingPrograms: number;
+    completedPrograms: number;
+  };
 }

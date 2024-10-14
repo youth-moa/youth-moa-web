@@ -5,42 +5,39 @@ import { toast } from "react-toastify";
 import Container from "../layouts/Container";
 
 import { Button } from "../components/common/Button";
+import { Checkbox } from "../components/common/Checkbox";
+import { DatePicker } from "../components/common/DatePicker";
 import { Input } from "../components/common/Input";
 import { Label } from "../components/common/Label";
-import { Title } from "../components/common/Title";
 import { Radio } from "../components/common/Radio";
-import { Checkbox } from "../components/common/Checkbox";
-import { List } from "../components/sign-up/List";
-import { InputContainer } from "../components/sign-up/InputContainer";
-import { DatePicker } from "../components/common/DatePicker";
+import { Title } from "../components/common/Title";
 import { AddressModal } from "../components/home/AddressModal";
+import { InputContainer } from "../components/sign-up/InputContainer";
+import { List } from "../components/sign-up/List";
 
+import { checkEmail, signUp } from "../api/auth";
 import {
-  IcoCheckFilled,
+  IcoCheckFilledWhite,
   IcoCheckOutlined,
   IcoNext,
   IcoSearch,
 } from "../assets";
 import { BUTTON_TYPE } from "../constants/keys";
 import { AccountType } from "../types/auth";
-import { checkEmail, signUp } from "../api/auth";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
 
   const [isCheckEmail, setIsCheckEmail] = useState(false);
   const [isAddressOpen, setIsAddressOpen] = useState(false);
-  const [address, setAddress] = useState({
-    mainAddress: "",
-    detailAddress: "",
-  });
   const [user, setUser] = useState<AccountType>({
     userEmail: "",
     userPassword: "",
     userPasswordCheck: "",
     userName: "",
     userPhoneNumber: "",
-    userAddress: "",
+    userMainAddress: "",
+    userDetailAddress: "",
     userGender: "M",
     userBirthday: "",
     termsOfService: false,
@@ -107,7 +104,6 @@ export default function SignUpPage() {
 
     try {
       const response = await checkEmail(user.userEmail);
-      console.log(response);
 
       if (!response.success) {
         throw response;
@@ -116,7 +112,7 @@ export default function SignUpPage() {
       setIsCheckEmail(true);
     } catch (error: any) {
       console.error(error);
-      setEmailErrorMsg(error.response.data.message);
+      setEmailErrorMsg(error.data.message);
     }
   };
 
@@ -151,7 +147,7 @@ export default function SignUpPage() {
       isValid = false;
     } else setPhoneNumberErrorMsg("");
 
-    if (!address.mainAddress) {
+    if (!user.userMainAddress) {
       setAddressErrorMsg("* 주소를 입력해주세요.");
       isValid = false;
     } else setAddressErrorMsg("");
@@ -174,13 +170,8 @@ export default function SignUpPage() {
       return;
     }
 
-    const body = {
-      ...user,
-      userAddress: `${address.mainAddress} ${address.detailAddress}`,
-    };
-
     try {
-      const response = await signUp(body);
+      const response = await signUp(user);
 
       if (!response.success) {
         throw response;
@@ -193,7 +184,7 @@ export default function SignUpPage() {
   };
 
   const handleChangeAddress = (address: string) => {
-    setAddress((prev) => ({ ...prev, mainAddress: address }));
+    setUser((prev) => ({ ...prev, userMainAddress: address }));
   };
 
   return (
@@ -227,7 +218,7 @@ export default function SignUpPage() {
               >
                 <span className="flex items-center justify-center gap-2">
                   {isCheckEmail ? (
-                    <IcoCheckFilled width={18} height={18} fill="white" />
+                    <IcoCheckFilledWhite width={18} height={18} />
                   ) : (
                     <IcoCheckOutlined stroke="#303CE9" />
                   )}
@@ -293,34 +284,30 @@ export default function SignUpPage() {
             </InputContainer>
           </List>
 
-          {!address.mainAddress && (
+          {!user.userMainAddress && (
             <List>
               <Label label="주소" required className="col-span-1" />
-              {!user.userAddress && (
-                <span className="relative w-full h-[46px] md:col-span-2">
-                  <Button
-                    type={BUTTON_TYPE.outlined}
-                    onClick={() => setIsAddressOpen(true)}
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      <IcoSearch stroke="#303CE9" />
-                      주소 검색
-                    </span>
-                  </Button>
+              <span className="relative w-full h-[46px] md:col-span-2">
+                <Button
+                  type={BUTTON_TYPE.outlined}
+                  onClick={() => setIsAddressOpen(true)}
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <IcoSearch stroke="#303CE9" />
+                    주소 검색
+                  </span>
+                </Button>
 
-                  {addressErrorMsg && (
-                    <p
-                      className={`absolute text-red text-xs ml-4 mt-1/2 w-max`}
-                    >
-                      {addressErrorMsg}
-                    </p>
-                  )}
-                </span>
-              )}
+                {addressErrorMsg && (
+                  <p className={`absolute text-red text-xs ml-4 mt-1/2 w-max`}>
+                    {addressErrorMsg}
+                  </p>
+                )}
+              </span>
             </List>
           )}
 
-          {address.mainAddress && (
+          {user?.userMainAddress && (
             <li className="flex flex-col items-start w-full gap-2 md:grid md:grid-cols-4">
               <Label label="주소" required className="col-span-1" />
               <div className="flex flex-col w-full gap-3 md:col-span-2">
@@ -328,7 +315,7 @@ export default function SignUpPage() {
                   type="text"
                   name="detailAddress"
                   disabled
-                  value={address.mainAddress}
+                  value={user?.userMainAddress}
                 />
 
                 <span className="w-full h-[46px] md:col-span-2">
@@ -336,11 +323,11 @@ export default function SignUpPage() {
                     type="text"
                     placeholder="상세주소를 입력해주세요."
                     name="detailAddress"
-                    value={address.detailAddress}
+                    value={user?.userDetailAddress}
                     onChange={(e) =>
-                      setAddress((prev) => ({
+                      setUser((prev) => ({
                         ...prev,
-                        detailAddress: e.target.value,
+                        userDetailAddress: e.target.value,
                       }))
                     }
                   />
@@ -403,7 +390,7 @@ export default function SignUpPage() {
                 }
               >
                 <div className="flex items-center justify-between w-full">
-                  <p>회원가입약관</p>
+                  <p className="font-medium">회원가입약관</p>
                   <button className="flex items-center gap-2 text-blue">
                     약관보기
                     <IcoNext fill="#0264FB" />
@@ -420,7 +407,7 @@ export default function SignUpPage() {
                 }
               >
                 <div className="flex items-center justify-between w-full">
-                  <p>개인정보처리방침안내</p>
+                  <p className="font-medium">개인정보처리방침안내</p>
                   <button className="flex items-center gap-2 text-blue">
                     약관보기
                     <IcoNext fill="#0264FB" />

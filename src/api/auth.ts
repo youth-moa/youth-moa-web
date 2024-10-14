@@ -1,14 +1,16 @@
-import { api } from "./config";
 import {
   AccountType,
-  LoginResponse,
+  ChangePasswordRequest,
   CommonResponse,
   FindEmailRequest,
   FindEmailResponse,
   FindPasswordRequest,
   FindPasswordResponse,
-  ChangePasswordRequest,
+  LoginRequest,
+  LoginResponse,
+  UserResponse,
 } from "../types/auth";
+import { api } from "./config";
 
 /** 회원가입 */
 export function signUp(body: AccountType): Promise<CommonResponse> {
@@ -16,10 +18,7 @@ export function signUp(body: AccountType): Promise<CommonResponse> {
 }
 
 /** 로그인 */
-export function login(body: {
-  userEmail: string;
-  userPassword: string;
-}): Promise<LoginResponse> {
+export function login(body: LoginRequest): Promise<LoginResponse> {
   return api.post("/api/users/login", body);
 }
 
@@ -62,6 +61,30 @@ export function checkExpirationToken(): Promise<any> {
 }
 
 /** 회원 탈퇴 */
-export function deleteUser(userEmail: string) {
-  return api.delete(`/api/mypage/user/userEmail=${userEmail}`);
+export function deleteUser(userEmail: string): Promise<CommonResponse> {
+  return api.delete(`/api/mypage/user?userEmail=${userEmail}`);
+}
+
+/** 사용자 정보 조회 */
+export function getUserInfo(): Promise<UserResponse> {
+  return api.get("/api/mypage/user/me/programs");
+}
+
+/** 토큰 재발급 */
+export function getTokenByRefreshToken(refreshToken: string): Promise<any> {
+  return api.post("/api/users/token/refresh", {
+    headers: {
+      RefreshToken: `Bearer ${refreshToken}`,
+    },
+  });
+}
+
+/** 비밀번호 재확인 */
+export function recheckPassword(body: LoginRequest): Promise<CommonResponse> {
+  return api.post("/api/mypage/recheck-pwd", body);
+}
+
+/** 개인정보 수정 */
+export function editPersonalInfo(body: AccountType): Promise<CommonResponse> {
+  return api.patch("/api/mypage/personal-info", body);
 }

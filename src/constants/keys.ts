@@ -4,6 +4,22 @@ export const BUTTON_TYPE = {
 } as const;
 
 export const PROGRAM_STATUS = {
-  IN_PROGRESS: "진행중",
-  PENDING: "마감",
+  progress: "진행중",
+  closed: "마감",
+  pending: "대기",
+  approved: "승인",
+  rejected: "반려",
+  canceled: "취소",
 } as const;
+
+export const PROGRAM_SORT = {
+  TOTAL: "",
+  LATEST: "latest",
+  POPULAR: "popular",
+  PROGRESS: "progress",
+};
+
+export const GENDER = {
+  F: "여",
+  M: "남",
+};

@@ -44,7 +44,7 @@ export function Radio(props: PropsType) {
         }
       />
       {label && (
-        <span className="mx-3 text-sm text-gray-002 peer-checked:text-blue">
+        <span className="mx-3 text-sm font-medium text-gray-002 peer-checked:text-blue">
           {label}
         </span>
       )}

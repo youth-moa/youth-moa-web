@@ -7,7 +7,18 @@ export default {
         header: "0px 3px 4px 0px rgba(0, 0, 0, 0.12);",
       },
       colors: {
+        title: "rgba(64, 65, 75, 1)",
+        text: "rgba(77, 75, 75, 1)",
         blue: "rgba(63, 48, 233, 1)",
+        "blue-opacity": "rgba(236, 237, 255, 1)",
+        badge: {
+          progress: "rgba(69, 180, 25, 1)",
+          closed: "rgba(130, 128, 134, 1)",
+          approved: "rgba(55, 123, 228, 1)",
+          pending: "rgba(239, 161, 25, 1)",
+          rejected: "rgba(255, 57, 50, 1)",
+          canceled: "rgba(50, 50, 50, 1)",
+        },
         "border-gray": "rgba(217, 217, 217, 1)",
         "header-black": "rgba(50, 50, 50, 1)",
         "tag-gray": "rgba(110, 112, 116, 1)",
@@ -20,6 +31,9 @@ export default {
         red: "rgba(254, 38, 38, 1)",
       },
       boxShadow: { base: "0px 0px 4px 0px rgba(0, 0, 0, 0.20);" },
+      fontFamily: {
+        "gmarket-sans": ["GmarketSans"],
+      },
     },
   },
   plugins: [],

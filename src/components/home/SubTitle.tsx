@@ -6,5 +6,5 @@ interface PropsType {
 export function SubTitle(props: PropsType) {
   const { text, className } = props;
 
-  return <h1 className={`text-3xl font-bold ${className}`}>{text}</h1>;
+  return <h1 className={`text-3xl font-semibold ${className}`}>{text}</h1>;
 }
